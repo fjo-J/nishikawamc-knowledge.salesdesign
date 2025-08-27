@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>社内向け 助成金・補助金ナレッジベース | 西河マネジメントセンター</title>
+    <title>NMC-support tool | 西河マネジメントセンター</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', 'Noto Sans JP', sans-serif;
         }
-        .content-section {
+        .content-section, .program-tab-panel, #grant-details-wrapper {
             display: none;
         }
-        .content-section.active {
+        .content-section.active, .program-tab-panel.active {
             display: block;
         }
         .search-highlight {
@@ -27,36 +27,73 @@
             transform: translateX(4px);
             color: #2563eb; /* blue-600 */
         }
+        .program-tab {
+            border-bottom: 2px solid transparent;
+        }
+        .program-tab.active {
+            border-bottom-color: #2563eb; /* blue-600 */
+            color: #2563eb;
+        }
+        .grant-choice-card, .partner-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .grant-choice-card:hover, .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        /* Modal styles */
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+        /* Timeline styles */
+        .timeline-svg text {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
     <div class="container mx-auto p-4 md:p-8">
         <!-- Header -->
-        <header class="bg-white p-6 rounded-xl shadow-md mb-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div>
-                    <h1 class="text-3xl font-bold text-gray-900">社内ナレッジベース</h1>
-                    <p class="text-gray-600 mt-1">株式会社西河マネジメントセンター</p>
+        <header class="bg-white p-4 rounded-xl shadow-md mb-8 flex items-center justify-between">
+            <!-- Left side: Title -->
+            <div>
+                <h1 class="text-xl font-bold text-gray-900">NMC-support tool</h1>
+                <p class="text-xs text-gray-500">Nishikawa Management Center</p>
+            </div>
+
+            <!-- Right side: Search Bar -->
+            <div class="w-full max-w-lg relative">
+                 <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
                 </div>
-                <div class="mt-4 md:mt-0 w-full md:w-1/2">
-                    <input type="text" id="searchInput" placeholder="キーワードで検索 (例: キャリアアップ, ポイント)..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
-                </div>
+                <input type="text" id="searchInput" placeholder="キーワードでナレッジベース全体を検索..." class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
             </div>
         </header>
 
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <!-- Table of Contents -->
             <aside class="lg:col-span-1 bg-white p-6 rounded-xl shadow-md h-fit sticky top-8">
-                <h2 class="text-xl font-bold mb-4 border-b pb-2">目次</h2>
-                <nav id="toc" class="space-y-3">
-                    <a href="#home" class="block font-medium text-gray-700 hover:text-blue-600">トップページ</a>
-                    <a href="#service-summary" class="block font-medium text-gray-700 hover:text-blue-600">当社事業概要</a>
-                    <a href="#program-point-back" class="block font-medium text-gray-700 hover:text-blue-600">ポイントバックプログラム</a>
-                    <a href="#program-career-up" class="block font-medium text-gray-700 hover:text-blue-600">キャリアアップ助成金減額回避</a>
-                    <a href="#point-partners" class="block font-medium text-gray-700 hover:text-blue-600">ポイント利用先一覧</a>
-                    <a href="#security-sheet" class="block font-medium text-gray-700 hover:text-blue-600">セキュリティチェックシート</a>
-                    <a href="#how-to-add" class="block font-medium text-gray-700 hover:text-blue-600">ナレッジの追加方法</a>
+                <h2 class="text-xl font-bold mb-4 border-b pb-2">Table</h2>
+                <nav id="toc" class="space-y-2">
+                    <a href="#home" class="main-nav-link block font-medium text-gray-700 hover:text-blue-600"><span class="w-7 inline-block">01.</span>TOP</a>
+                    <div>
+                        <a href="#service-menu" class="main-nav-link block font-medium text-gray-700 hover:text-blue-600"><span class="w-7 inline-block">02.</span>Service Menu</a>
+                        <div class="pl-7 mt-2 space-y-2 border-l-2 ml-3">
+                             <a href="#program-point-back" class="sub-nav-link block text-sm font-medium text-gray-500 hover:text-blue-600">ポイントバック</a>
+                             <a href="#program-career-up" class="sub-nav-link block text-sm font-medium text-gray-500 hover:text-blue-600">キャリアアップ</a>
+                        </div>
+                    </div>
+                    <a href="#grant-search" class="main-nav-link block font-medium text-gray-700 hover:text-blue-600"><span class="w-7 inline-block">03.</span>助成金・補助金 検索</a>
+                    <a href="#point-partners" class="main-nav-link block font-medium text-gray-700 hover:text-blue-600"><span class="w-7 inline-block">04.</span>ポイント利用先一覧</a>
+                    <a href="#service-summary" class="main-nav-link block font-medium text-gray-700 hover:text-blue-600"><span class="w-7 inline-block">05.</span>当社事業概要</a>
+                    <a href="#schedule-generator" class="main-nav-link block font-medium text-gray-700 hover:text-blue-600"><span class="w-7 inline-block">06.</span>スケジュール生成</a>
+                    <a href="#how-to-add" class="main-nav-link block font-medium text-gray-700 hover:text-blue-600"><span class="w-7 inline-block">07.</span>ナレッジの追加方法</a>
                 </nav>
             </aside>
 
@@ -71,190 +108,322 @@
                         <ul class="list-disc list-inside mt-2 text-blue-700">
                             <li>社内の知識レベルを統一し、誰でもフロント対応ができる状態にする。</li>
                             <li>複雑なサービス（ポイント利用、助成金組み合わせ）の理解を促進する。</li>
-                            <li>顧客からの質問やセキュリティチェックシートに迅速かつ正確に回答する。</li>
+                            <li>顧客からの質問に迅速かつ正確に回答する。</li>
                         </ul>
                     </div>
                      <h3 class="text-xl font-bold mt-6 mb-3">よくある質問 (FAQ)</h3>
                     <div class="space-y-2">
-                        <p><a href="#program-career-up" class="text-blue-600 hover:underline">Q: キャリアアップ助成金が減額されるって本当？どうすれば回避できる？</a></p>
-                        <p><a href="#program-point-back" class="text-blue-600 hover:underline">Q: 研修を受けるとポイントが貰える仕組みについて教えて。</a></p>
-                        <p><a href="#program-point-back" class="text-blue-600 hover:underline">Q: 実質無料で研修を受けられるってどういうこと？</a></p>
-                        <p><a href="#point-partners" class="text-blue-600 hover:underline">Q: 貯まったポイントはどこで使えるの？</a></p>
+                        <p><a href="#program-career-up" class="sub-nav-link text-blue-600 hover:underline">Q: キャリアアップ助成金が減額されるって本当？どうすれば回避できる？</a></p>
+                        <p><a href="#program-point-back" class="sub-nav-link text-blue-600 hover:underline">Q: 研修を受けるとポイントが貰える仕組みについて教えて。</a></p>
+                        <p><a href="#grant-search" class="main-nav-link text-blue-600 hover:underline">Q: 「助成金」と「補助金」の違いは？</a></p>
+                        <p><a href="#point-partners" class="main-nav-link text-blue-600 hover:underline">Q: 貯まったポイントはどこで使えるの？</a></p>
                     </div>
                 </section>
 
-                <!-- Service Summary Section -->
-                <section id="service-summary" class="content-section bg-white p-8 rounded-xl shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">当社事業概要</h2>
-                    <p class="mb-4">西河マネジメントセンターは、コンサルティング、研修、申請代行をワンストップで提供し、事業同士が連携することで顧客の事業成長を最大化します。</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-gray-50 p-4 rounded-lg border">
-                            <h3 class="font-bold text-lg">主力事業：研修事業</h3>
-                            <p>DX/GX研修、ニューロポテンシャル研修などを提供。助成金との組み合わせで高い付加価値を生み出す。</p>
+                <!-- Service Menu Section -->
+                <section id="service-menu" class="content-section bg-white p-8 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">Service Menu</h2>
+                    <div class="border-b border-gray-200">
+                        <nav id="program-tabs" class="-mb-px flex space-x-8" aria-label="Tabs">
+                            <button data-tab-target="#program-point-back" class="program-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm active">
+                                人材開発支援助成金 / ポイントバックプログラム
+                            </button>
+                            <button data-tab-target="#program-career-up" class="program-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                                キャリアアップ助成金 / 減額回避プログラム
+                            </button>
+                        </nav>
+                    </div>
+                    <div class="mt-6">
+                        <!-- Point Back Program Panel -->
+                        <div id="program-point-back" class="program-tab-panel active">
+                            <p class="mb-4">人材開発支援助成金を活用し、従業員のリスキリングと経営投資を同時に実現する当社独自のプログラムです。</p>
+                            <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg mb-6">
+                                <h3 class="font-bold text-green-800">プログラムの核心</h3>
+                                <p class="text-green-700">企業は助成金で研修費用の大半をカバーし、さらに当社から提供される「ポイント」で紹介元パートナーのサービスを利用できます。これにより、<strong class="font-bold">実質的な自己負担を大幅に軽減、あるいはプラスにする</strong>ことが可能です。</p>
+                            </div>
+                            <h3 class="text-xl font-bold mt-6 mb-3">モデルケース (2025年3月〜)</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead><tr class="bg-gray-100"><th class="p-3 border">項目</th><th class="p-3 border">金額</th><th class="p-3 border">説明</th></tr></thead>
+                                    <tbody>
+                                        <tr><td class="p-3 border">DX/GX研修費用</td><td class="p-3 border">60万円/名</td><td class="p-3 border">企業が一時的に負担する研修費用。</td></tr>
+                                        <tr><td class="p-3 border font-medium">人材開発支援助成金</td><td class="p-3 border text-green-600 font-bold">- 48万円/名</td><td class="p-3 border">国から企業へ支給される助成金。</td></tr>
+                                        <tr class="bg-gray-50"><td class="p-3 border">企業の実質負担額</td><td class="p-3 border">12万円/名</td><td class="p-3 border">研修費用から助成金を差し引いた金額。</td></tr>
+                                        <tr><td class="p-3 border font-medium">提携サービス利用可能ポイント</td><td class="p-3 border text-blue-600 font-bold">+ 24万円分</td><td class="p-3 border">当社から企業へ提供。紹介元パートナーのサービスに利用可能。</td></tr>
+                                        <tr class="bg-yellow-50"><td class="p-3 border font-bold">最終的な企業のメリット</td><td class="p-3 border text-red-600 font-bold">+ 12万円相当</td><td class="p-3 border">実質負担額をポイントが上回り、企業にとってプラスになる計算。</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="bg-gray-50 p-4 rounded-lg border">
-                            <h3 class="font-bold text-lg">収益事業：申請代行事業</h3>
-                            <p>補助金・助成金の申請業務を代行。安定した収益基盤。</p>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg border">
-                            <h3 class="font-bold text-lg">育成事業：経営労務人事コンサル</h3>
-                            <p>今後の成長が見込まれる領域。専門知識を活かし、企業の課題を解決。</p>
-                        </div>
-                        <div class="bg-gray-50 p-4 rounded-lg border">
-                            <h3 class="font-bold text-lg">判断事業：補助金助成金コンサル</h3>
-                            <p>顧客へのメリット提供は大きいが、収益化が課題。研修事業との連携で強化。</p>
+                        <!-- Career Up Program Panel -->
+                        <div id="program-career-up" class="program-tab-panel">
+                             <p class="mb-4">2025年度からのキャリアアップ助成金（正社員化コース）の制度変更による支給額減額を、当社の研修プログラムと組み合わせることで回避します。</p>
+                            <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg mb-6">
+                                <h3 class="font-bold text-red-800">制度変更のポイント</h3>
+                                <p class="text-red-700">これまで合計80万円（40万×2回）支給されていたものが、<strong class="font-bold">2025年度から40万円（1回のみ）に減額</strong>されます。しかし、<strong class="font-bold">有期雇用期間中に指定の研修を受講</strong>することで、2回目の40万円（加算措置）も受給可能になります。</p>
+                            </div>
+                            
+                            <h3 class="text-xl font-bold mt-6 mb-3">インフォグラフィック：研修の有無による違い</h3>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <!-- Case 1: Without Training -->
+                                <div class="border rounded-lg p-4 bg-gray-50">
+                                    <h4 class="font-bold text-center text-lg mb-2">通常プラン（研修なし）</h4>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" class="w-full">
+                                        <text x="150" y="20" text-anchor="middle" font-size="14" font-weight="bold">受給額: 40万円</text>
+                                        <rect x="50" y="40" width="200" height="30" fill="#fca5a5"/>
+                                        <text x="150" y="60" text-anchor="middle" font-size="12" fill="#7f1d1d">手数料 (20%): 8万円</text>
+                                        <rect x="50" y="70" width="160" height="30" fill="#86efac"/>
+                                        <text x="130" y="90" text-anchor="middle" font-size="12" fill="#14532d">お客様受取額: 32万円</text>
+                                        <path d="M 210 70 L 210 120 L 230 120" fill="none" stroke="#9ca3af" stroke-width="2"/>
+                                        <text x="235" y="125" text-anchor="start" font-size="12" fill="#4b5563">2期目(40万円)は対象外</text>
+                                    </svg>
+                                </div>
+                                <!-- Case 2: With Training -->
+                                <div class="border-2 border-blue-500 rounded-lg p-4 bg-blue-50 relative">
+                                    <div class="absolute -top-3 -left-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">おすすめ</div>
+                                    <h4 class="font-bold text-center text-lg mb-2 text-blue-800">減額回避プログラム（研修あり）</h4>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" class="w-full">
+                                        <text x="150" y="20" text-anchor="middle" font-size="14" font-weight="bold">受給額合計: 80万円</text>
+                                        <rect x="20" y="40" width="260" height="30" fill="#93c5fd"/>
+                                        <text x="150" y="60" text-anchor="middle" font-size="12" fill="#1e3a8a">1期目(40万) + 2期目加算(40万)</text>
+                                        <rect x="20" y="70" width="220" height="30" fill="#86efac"/>
+                                        <text x="130" y="90" text-anchor="middle" font-size="12" fill="#14532d">お客様受取額: 64万円</text>
+                                        <text x="150" y="125" text-anchor="middle" font-size="12" fill="#4b5563">手数料(16万) - 研修自己負担(12万) = 実質4万円</text>
+                                    </svg>
+                                </div>
+                            </div>
+
+                             <h3 class="text-xl font-bold mt-8 mb-3">減額回避プログラムのスケジュール</h3>
+                             <p class="text-sm mb-4">有期雇用から正社員転換までの期間に研修（最低10時間）を実施する必要があります。全体のプロセスには約13〜14ヶ月かかります。</p>
+                             <div class="w-full overflow-x-auto bg-gray-50 p-4 rounded-lg">
+                                 <svg class="timeline-svg" width="800" height="150">
+                                     <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#9ca3af"/></marker></defs>
+                                     <line x1="50" y1="50" x2="750" y2="50" stroke="#cbd5e1" stroke-width="2" marker-end="url(#arrowhead)"/>
+                                     <!-- Event 1: Start -->
+                                     <circle cx="60" cy="50" r="6" fill="#3b82f6" /><line x1="60" y1="50" x2="60" y2="70" stroke="#3b82f6" stroke-width="2"/><text x="60" y="90" text-anchor="middle" font-size="12" fill="#4b5563">有期雇用開始</text><text x="60" y="110" text-anchor="middle" font-size="12" font-weight="bold">開始日</text>
+                                     <!-- Event 2: Training -->
+                                     <rect x="100" y="45" width="200" height="10" fill="#93c5fd" rx="5"/><text x="200" y="35" text-anchor="middle" font-size="12" fill="#1e3a8a">指定研修受講 (10h〜)</text>
+                                     <!-- Event 3: Full-time -->
+                                     <circle cx="350" cy="50" r="6" fill="#3b82f6" /><line x1="350" y1="50" x2="350" y2="70" stroke="#3b82f6" stroke-width="2"/><text x="350" y="90" text-anchor="middle" font-size="12" fill="#4b5563">正社員転換</text><text x="350" y="110" text-anchor="middle" font-size="12" font-weight="bold">約6ヶ月後</text>
+                                     <!-- Event 4: 1st App -->
+                                     <circle cx="550" cy="50" r="6" fill="#3b82f6" /><line x1="550" y1="50" x2="550" y2="70" stroke="#3b82f6" stroke-width="2"/><text x="550" y="90" text-anchor="middle" font-size="12" fill="#4b5563">1期目申請</text><text x="550" y="110" text-anchor="middle" font-size="12" font-weight="bold">約12ヶ月後</text>
+                                     <!-- Event 5: 2nd App -->
+                                     <circle cx="740" cy="50" r="6" fill="#16a34a" /><line x1="740" y1="50" x2="740" y2="70" stroke="#16a34a" stroke-width="2"/><text x="740" y="90" text-anchor="middle" font-size="12" fill="#4b5563">2期目申請</text><text x="740" y="110" text-anchor="middle" font-size="12" font-weight="bold">約18ヶ月後</text>
+                                 </svg>
+                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- Point Back Program Section -->
-                <section id="program-point-back" class="content-section bg-white p-8 rounded-xl shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">人材開発支援助成金 / ポイントバックプログラム</h2>
-                    <p class="mb-4">人材開発支援助成金を活用し、従業員のリスキリングと経営投資を同時に実現する当社独自のプログラムです。</p>
+                <!-- Grant Search Section -->
+                <section id="grant-search" class="content-section bg-white p-8 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">助成金・補助金 検索</h2>
+                    <p class="mb-6">まず、「助成金」と「補助金」の基本的な違いを理解しましょう。どちらかを選択すると、詳細な説明と関連制度の検索ができます。</p>
                     
-                    <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg mb-6">
-                        <h3 class="font-bold text-green-800">プログラムの核心</h3>
-                        <p class="text-green-700">企業は助成金で研修費用の大半をカバーし、さらに当社から提供される「ポイント」で紹介元パートナーのサービスを利用できます。これにより、<strong class="font-bold">実質的な自己負担を大幅に軽減、あるいはプラスにする</strong>ことが可能です。</p>
+                    <div id="grant-choice-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
+                        <!-- Choice Card for Grants -->
+                        <div id="choice-joseikin" class="grant-choice-card cursor-pointer p-6 bg-blue-50 rounded-lg border border-blue-200">
+                            <h3 class="text-2xl font-bold text-blue-800">助成金とは？</h3>
+                            <p class="text-blue-600 mt-2">主に<strong class="font-bold">厚生労働省</strong>が管轄。<br>雇用の安定や人材育成が目的。</p>
+                        </div>
+                        <!-- Choice Card for Subsidies -->
+                        <div id="choice-hojokin" class="grant-choice-card cursor-pointer p-6 bg-green-50 rounded-lg border border-green-200">
+                             <h3 class="text-2xl font-bold text-green-800">補助金とは？</h3>
+                            <p class="text-green-600 mt-2">主に<strong class="font-bold">経済産業省</strong>や自治体が管轄。<br>新規事業や技術開発の促進が目的。</p>
+                        </div>
                     </div>
 
-                    <h3 class="text-xl font-bold mt-6 mb-3">モデルケース (2025年3月〜)</h3>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-gray-100">
-                                    <th class="p-3 border">項目</th>
-                                    <th class="p-3 border">金額</th>
-                                    <th class="p-3 border">説明</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="p-3 border">DX/GX研修費用</td>
-                                    <td class="p-3 border">60万円/名</td>
-                                    <td class="p-3 border">企業が一時的に負担する研修費用。</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 border font-medium">人材開発支援助成金</td>
-                                    <td class="p-3 border text-green-600 font-bold">- 48万円/名</td>
-                                    <td class="p-3 border">国から企業へ支給される助成金。</td>
-                                </tr>
-                                <tr class="bg-gray-50">
-                                    <td class="p-3 border">企業の実質負担額</td>
-                                    <td class="p-3 border">12万円/名</td>
-                                    <td class="p-3 border">研修費用から助成金を差し引いた金額。</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-3 border font-medium">提携サービス利用可能ポイント</td>
-                                    <td class="p-3 border text-blue-600 font-bold">+ 24万円分</td>
-                                    <td class="p-3 border">当社から企業へ提供。紹介元パートナーのサービスに利用可能。</td>
-                                </tr>
-                                <tr class="bg-yellow-50">
-                                    <td class="p-3 border font-bold">最終的な企業のメリット</td>
-                                    <td class="p-3 border text-red-600 font-bold">+ 12万円相当</td>
-                                    <td class="p-3 border">実質負担額をポイントが上回り、企業にとってプラスになる計算。</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-                
-                <!-- Career Up Program Section -->
-                <section id="program-career-up" class="content-section bg-white p-8 rounded-xl shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">キャリアアップ助成金 / 減額回避プログラム</h2>
-                    <p class="mb-4">2025年度からのキャリアアップ助成金（正社員化コース）の制度変更による支給額減額を、当社の研修プログラムと組み合わせることで回避します。</p>
-
-                    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg mb-6">
-                        <h3 class="font-bold text-red-800">制度変更のポイント</h3>
-                        <p class="text-red-700">これまで合計80万円（40万×2回）支給されていたものが、<strong class="font-bold">2025年度から40万円（1回のみ）に減額</strong>されます。しかし、<strong class="font-bold">非正規雇用期間中に特定の研修を受講</strong>することで、2回目の40万円（加算措置）も受給可能になります。</p>
-                    </div>
-
-                    <h3 class="text-xl font-bold mt-6 mb-3">費用と助成金の流れ</h3>
-                    <p class="mb-4">顧客の混乱を避けるため、「研修費用」と「キャリアアップ助成金」は分けて説明することが重要です。</p>
-
-                    <h4 class="font-bold mt-4 mb-2">1. リスキリング研修について</h4>
-                     <div class="overflow-x-auto mb-6">
-                        <table class="w-full text-left border-collapse">
-                             <thead class="bg-gray-100">
-                                <tr><th class="p-3 border">研修内容</th><th class="p-3 border">研修費用</th><th class="p-3 border">人開金助成額</th><th class="p-3 border">自己負担</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td class="p-3 border">DX研修</td><td class="p-3 border">30万円</td><td class="p-3 border">24万円</td><td class="p-3 border">6万円</td></tr>
-                                <tr><td class="p-3 border">GX研修</td><td class="p-3 border">30万円</td><td class="p-3 border">24万円</td><td class="p-3 border">6万円</td></tr>
-                                <tr class="bg-gray-50 font-bold"><td class="p-3 border">合計</td><td class="p-3 border">60万円</td><td class="p-3 border">48万円</td><td class="p-3 border">12万円</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h4 class="font-bold mt-4 mb-2">2. キャリアアップ助成金について</h4>
-                     <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                           <thead class="bg-gray-100">
-                                <tr><th class="p-3 border">申請タイミング</th><th class="p-3 border">キャリアアップ助成金 支給額</th><th class="p-3 border">当社手数料</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td class="p-3 border">1期目 (正社員化6ヶ月後)</td><td class="p-3 border">40万円</td><td class="p-3 border">8万円</td></tr>
-                                <tr><td class="p-3 border">2期目 (さらに6ヶ月後)</td><td class="p-3 border"><strong class="text-green-600">40万円 (研修による加算措置)</strong></td><td class="p-3 border">8万円</td></tr>
-                                <tr class="bg-gray-50 font-bold"><td class="p-3 border">合計</td><td class="p-3 border">80万円</td><td class="p-3 border">16万円</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="mt-6 p-4 bg-blue-50 rounded-lg">
-                        <h4 class="font-bold text-lg">顧客の最終的な収支</h4>
-                        <p>申請手数料合計(16万円)は、研修の自己負担分(12万円)から差し引く形で提案します。</p>
-                        <p class="text-center text-xl font-bold mt-2">16万円 (手数料) - 12万円 (研修自己負担) = <span class="text-blue-600">実質4万円の手数料</span></p>
-                        <p class="text-center mt-1">となり、顧客は少ない負担で<strong class="font-bold">40万円の助成金減額を回避</strong>できます。</p>
+                    <div id="grant-details-wrapper" class="mt-8">
+                        <button id="back-to-choice" class="mb-6 text-sm text-gray-600 hover:text-black">&larr; 選びなおす</button>
+                        <!-- Infographic and Details for Grants -->
+                        <div id="details-joseikin" class="hidden">
+                            <h3 class="text-xl font-bold mb-4 text-blue-800">インフォグラフィック：助成金のポイント</h3>
+                            <div class="border rounded-lg p-4 bg-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" class="w-full">
+                                    <rect width="800" height="200" fill="#f0f9ff"/>
+                                    <!-- Item 1: Purpose -->
+                                    <g transform="translate(100, 100)">
+                                        <circle cx="0" cy="0" r="40" fill="#3b82f6"/>
+                                        <path d="M-20 -10 a5 5 0 0 1 5 -5 h30 a5 5 0 0 1 5 5 v20 a5 5 0 0 1 -5 5 h-10 l-5 5 v-5 h-15 a5 5 0 0 1 -5 -5 z" fill="white"/>
+                                        <path d="M-5 0 h10 M-5 5 h10 M-5 -5 h10" stroke="white" stroke-width="2"/>
+                                        <text y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#374151">目的</text>
+                                        <text y="80" text-anchor="middle" font-size="12" fill="#4b5563">雇用の安定・創出</text>
+                                    </g>
+                                    <path d="M150 100 h100" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5,5"/>
+                                    <!-- Item 2: Requirement -->
+                                    <g transform="translate(300, 100)">
+                                        <circle cx="0" cy="0" r="40" fill="#3b82f6"/>
+                                        <path d="M-15 -20 h30 v40 h-30 z" fill="white"/>
+                                        <path d="M-10 -15 h20 M-10 -5 h20 M-10 5 h20 M-10 15 h10" stroke="#3b82f6" stroke-width="2"/>
+                                        <text y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#374151">要件</text>
+                                        <text y="80" text-anchor="middle" font-size="12" fill="#4b5563">条件を満たせば原則受給</text>
+                                    </g>
+                                    <path d="M350 100 h100" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5,5"/>
+                                    <!-- Item 3: Source -->
+                                    <g transform="translate(500, 100)">
+                                        <circle cx="0" cy="0" r="40" fill="#3b82f6"/>
+                                        <text font-size="30" text-anchor="middle" y="10" fill="white">¥</text>
+                                        <text y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#374151">財源</text>
+                                        <text y="80" text-anchor="middle" font-size="12" fill="#4b5563">雇用保険料</text>
+                                    </g>
+                                     <path d="M550 100 h100" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5,5"/>
+                                    <!-- Item 4: Timing -->
+                                    <g transform="translate(700, 100)">
+                                        <circle cx="0" cy="0" r="40" fill="#3b82f6"/>
+                                        <path d="M0 -15 v30 M-15 0 h30" stroke="white" stroke-width="3"/>
+                                        <path d="M-10 -10 L 10 10" stroke="white" stroke-width="3"/>
+                                        <text y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#374151">タイミング</text>
+                                        <text y="80" text-anchor="middle" font-size="12" fill="#4b5563">通年で公募が多い</text>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <!-- Infographic and Details for Subsidies -->
+                        <div id="details-hojokin" class="hidden">
+                            <h3 class="text-xl font-bold mb-4 text-green-800">インフォグラフィック：補助金のポイント</h3>
+                             <div class="border rounded-lg p-4 bg-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" class="w-full">
+                                    <rect width="800" height="200" fill="#f0fdf4"/>
+                                    <!-- Item 1: Purpose -->
+                                    <g transform="translate(100, 100)">
+                                        <circle cx="0" cy="0" r="40" fill="#16a34a"/>
+                                        <path d="M0 -20 a15 15 0 0 1 0 30 a15 15 0 0 1 0 -30 M0 -25 v-5 M0 20 v5 M-20 0 h-5 M20 0 h5" fill="none" stroke="white" stroke-width="3"/>
+                                        <circle cx="0" cy="0" r="5" fill="white"/>
+                                        <text y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#374151">目的</text>
+                                        <text y="80" text-anchor="middle" font-size="12" fill="#4b5563">国の政策推進</text>
+                                    </g>
+                                    <path d="M150 100 h100" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5,5"/>
+                                    <!-- Item 2: Requirement -->
+                                    <g transform="translate(300, 100)">
+                                        <circle cx="0" cy="0" r="40" fill="#16a34a"/>
+                                        <path d="M-20 -15 L0 5 L20 -15 L0 15 z" fill="white"/>
+                                        <path d="M-10 18 h20" stroke="white" stroke-width="3"/>
+                                        <text y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#374151">要件</text>
+                                        <text y="80" text-anchor="middle" font-size="12" fill="#4b5563">審査があり採択・不採択</text>
+                                    </g>
+                                    <path d="M350 100 h100" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5,5"/>
+                                    <!-- Item 3: Source -->
+                                    <g transform="translate(500, 100)">
+                                        <circle cx="0" cy="0" r="40" fill="#16a34a"/>
+                                        <text font-size="30" text-anchor="middle" y="10" fill="white">税</text>
+                                        <text y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#374151">財源</text>
+                                        <text y="80" text-anchor="middle" font-size="12" fill="#4b5563">主に税金</text>
+                                    </g>
+                                     <path d="M550 100 h100" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5,5"/>
+                                    <!-- Item 4: Timing -->
+                                    <g transform="translate(700, 100)">
+                                        <circle cx="0" cy="0" r="40" fill="#16a34a"/>
+                                        <path d="M-15 -15 h30 v30 h-30 z" fill="white"/>
+                                        <text x="-5" y="5" font-size="14" fill="#16a34a">31</text>
+                                        <path d="M-15 -15 h30 v-5 h-30 z" fill="#16a34a"/>
+                                        <text y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#374151">タイミング</text>
+                                        <text y="80" text-anchor="middle" font-size="12" fill="#4b5563">公募期間が短い</text>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h3 class="text-xl font-bold mb-4">関連制度データベース</h3>
+                             <input type="text" id="grantSearchInput" placeholder="制度名やキーワードで絞り込み検索..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition mb-6">
+                            <div id="grantSearchResults" class="space-y-4">
+                                <!-- Grant items are pre-loaded -->
+                            </div>
+                        </div>
                     </div>
                 </section>
 
                 <!-- Point Partners Section -->
                 <section id="point-partners" class="content-section bg-white p-8 rounded-xl shadow-md">
                     <h2 class="text-2xl font-bold mb-4">ポイント利用先一覧</h2>
-                    <p class="mb-4">ポイントバックプログラムで獲得したポイントは、以下の提携サービスでご利用いただけます。（順次拡大中）</p>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        <div class="bg-gray-100 p-3 rounded-md text-center">Sales Marker</div>
-                        <div class="bg-gray-100 p-3 rounded-md text-center">Recruit Marker</div>
-                        <div class="bg-gray-100 p-3 rounded-md text-center">デジタル広告</div>
-                        <div class="bg-gray-100 p-3 rounded-md text-center">コンテンツ制作</div>
-                        <div class="bg-gray-100 p-3 rounded-md text-center">メールマーケティング</div>
-                        <div class="bg-gray-100 p-3 rounded-md text-center">旅行代理店</div>
-                        <div class="bg-gray-100 p-3 rounded-md text-center">営業代行各商材</div>
-                        <div class="bg-gray-100 p-3 rounded-md text-center">飲食店コンサルティング</div>
-                        <div class="bg-gray-100 p-3 rounded-md text-center">税理サービス</div>
-                        <div class="bg-gray-100 p-3 rounded-md text-center">内装工事関連</div>
-                        <div class="bg-gray-100 p-3 rounded-md text-center">最先端がん診断</div>
-                        <div class="bg-gray-100 p-3 rounded-md text-center">投資対象商材</div>
-                    </div>
-                </section>
-
-                <!-- Security Sheet Section -->
-                <section id="security-sheet" class="content-section bg-white p-8 rounded-xl shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">セキュリティチェックシート 回答例</h2>
-                    <p class="mb-4">汎用的な回答を準備しています。企業ごとに内容は調整してください。</p>
-                    <div class="space-y-4">
-                        <div>
-                            <h3 class="font-bold">Q. 情報セキュリティポリシーは策定されていますか？</h3>
-                            <p class="bg-gray-50 p-3 mt-1 rounded-md border">A. はい、策定しております。情報資産を適切に保護するための基本方針を定め、全従業員に周知徹底しております。</p>
+                    <p class="mb-6">ポイントバックプログラムで獲得したポイントは、以下の提携サービスでご利用いただけます。各カテゴリをクリックすると詳細が表示されます。</p>
+                    <div id="partner-category-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Card 1: Marketing & Sales -->
+                        <div data-modal-target="modal-marketing" class="partner-card bg-white p-6 rounded-lg border cursor-pointer">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-blue-100">
+                                    <svg class="w-6 h-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 19.5L15 15" /></svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 ml-4">マーケティング &amp; 営業支援</h3>
+                            </div>
+                            <p class="mt-3 text-gray-600 text-sm">Sales Markerやデジタル広告など、新規顧客獲得を加速させるサービス群です。</p>
                         </div>
-                        <div>
-                            <h3 class="font-bold">Q. 従業員へのセキュリティ教育は実施していますか？</h3>
-                            <p class="bg-gray-50 p-3 mt-1 rounded-md border">A. はい、年1回以上の情報セキュリティに関する研修を実施しております。また、新入社員研修においても必須項目として教育を行っております。</p>
+                        <!-- Card 2: Creative & Production -->
+                        <div data-modal-target="modal-creative" class="partner-card bg-white p-6 rounded-lg border cursor-pointer">
+                            <div class="flex items-center">
+                                 <div class="p-3 rounded-full bg-indigo-100">
+                                    <svg class="w-6 h-6 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.572L16.5 21.75l-.398-1.178a3.375 3.375 0 00-2.456-2.456L12.5 18l1.178-.398a3.375 3.375 0 002.456-2.456L16.5 14.25l.398 1.178a3.375 3.375 0 002.456 2.456L20.5 18l-1.178.398a3.375 3.375 0 00-2.456 2.456z" /></svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 ml-4">クリエイティブ &amp; 制作</h3>
+                            </div>
+                            <p class="mt-3 text-gray-600 text-sm">コンテンツ制作やメールマーケティングなど、顧客エンゲージメントを高める施策を支援します。</p>
                         </div>
-                        <div>
-                            <h3 class="font-bold">Q. 個人情報の取り扱いについて教えてください。</h3>
-                            <p class="bg-gray-50 p-3 mt-1 rounded-md border">A. 個人情報保護法および関連法令を遵守し、プライバシーポリシーに基づき適正な管理・運用を行っております。お客様からお預かりした個人情報は、同意を得た目的の範囲内でのみ利用いたします。</p>
+                        <!-- Card 3: Business Consulting -->
+                        <div data-modal-target="modal-consulting" class="partner-card bg-white p-6 rounded-lg border cursor-pointer">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-emerald-100">
+                                    <svg class="w-6 h-6 text-emerald-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 ml-4">経営コンサルティング</h3>
+                            </div>
+                            <p class="mt-3 text-gray-600 text-sm">税理サービスや飲食店コンサルなど、専門的な知見で事業成長をサポートします。</p>
                         </div>
-                        <div>
-                            <h3 class="font-bold">Q. ウイルス対策ソフトは導入されていますか？</h3>
-                            <p class="bg-gray-50 p-3 mt-1 rounded-md border">A. 全ての業務用PCにウイルス対策ソフトを導入し、定義ファイルを常に最新の状態に保っております。</p>
-                        </div>
-                         <div>
-                            <h3 class="font-bold">Q. データのバックアップは取得していますか？</h3>
-                            <p class="bg-gray-50 p-3 mt-1 rounded-md border">A. はい、重要なデータについては定期的にバックアップを取得し、安全な場所に保管しております。また、定期的にリストアテストを実施し、有事の際に備えております。</p>
+                        <!-- Card 4: Lifestyle & Other -->
+                        <div data-modal-target="modal-lifestyle" class="partner-card bg-white p-6 rounded-lg border cursor-pointer">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full bg-amber-100">
+                                    <svg class="w-6 h-6 text-amber-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 ml-4">ライフスタイル &amp; その他</h3>
+                            </div>
+                            <p class="mt-3 text-gray-600 text-sm">旅行代理店や最先端がん診断など、幅広いニーズに応えるサービスです。</p>
                         </div>
                     </div>
                 </section>
                 
+                <!-- Service Summary Section -->
+                <section id="service-summary" class="content-section bg-white p-8 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">当社事業概要</h2>
+                    <p class="mb-4">西河マネジメントセンターは、コンサルティング、研修、申請代行をワンストップで提供し、事業同士が連携することで顧客の事業成長を最大化します。</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-4 rounded-lg border"><h3 class="font-bold text-lg">主力事業：研修事業</h3><p>DX/GX研修、ニューロポテンシャル研修などを提供。助成金との組み合わせで高い付加価値を生み出す。</p></div>
+                        <div class="bg-gray-50 p-4 rounded-lg border"><h3 class="font-bold text-lg">収益事業：申請代行事業</h3><p>補助金・助成金の申請業務を代行。安定した収益基盤。</p></div>
+                        <div class="bg-gray-50 p-4 rounded-lg border"><h3 class="font-bold text-lg">育成事業：経営労務人事コンサル</h3><p>今後の成長が見込まれる領域。専門知識を活かし、企業の課題を解決。</p></div>
+                        <div class="bg-gray-50 p-4 rounded-lg border"><h3 class="font-bold text-lg">判断事業：補助金助成金コンサル</h3><p>顧客へのメリット提供は大きいが、収益化が課題。研修事業との連携で強化。</p></div>
+                    </div>
+                </section>
+
+                <!-- Schedule Generator Section -->
+                <section id="schedule-generator" class="content-section bg-white p-8 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">スケジュールジェネレーター</h2>
+                    <p class="mb-6">プログラムとヒアリング日を選択すると、お客様にご提示するスケジュールの目安が自動生成されます。</p>
+                    <div class="bg-gray-50 p-6 rounded-lg border">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+                            <div class="md:col-span-2">
+                                <label for="program-select" class="block text-sm font-medium text-gray-700 mb-1">プログラム選択</label>
+                                <select id="program-select" class="w-full p-2 border border-gray-300 rounded-md">
+                                    <option value="career-up">キャリアアップ助成金 減額回避プログラム</option>
+                                    <option value="point-back">人材開発支援助成金 / ポイントバックプログラム</option>
+                                    <option value="it-hojokin">IT導入補助金</option>
+                                    <option value="monodukuri-hojokin">ものづくり補助金</option>
+                                    <option value="gyomukaizen-joseikin">業務改善助成金</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="hearing-date" class="block text-sm font-medium text-gray-700 mb-1">ヒアリング日</label>
+                                <input type="date" id="hearing-date" class="w-full p-2 border border-gray-300 rounded-md">
+                            </div>
+                        </div>
+                        <button id="generate-schedule-btn" class="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">スケジュールを生成</button>
+                    </div>
+                    <div id="schedule-result" class="mt-6">
+                        <!-- Schedule will be generated here -->
+                    </div>
+                    <div id="schedule-documents" class="mt-8">
+                        <!-- Required documents will be generated here -->
+                    </div>
+                </section>
+
                 <!-- How to Add Knowledge Section -->
                 <section id="how-to-add" class="content-section bg-white p-8 rounded-xl shadow-md">
                     <h2 class="text-2xl font-bold mb-4">ナレッジの追加方法</h2>
@@ -274,106 +443,474 @@
         </div>
     </div>
 
+    <!-- Partner Services Modal -->
+    <div id="partner-modal" class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50 opacity-0">
+        <div class="modal-content bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 relative transform scale-95">
+            <button class="modal-close-btn absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <div id="modal-body">
+                <!-- Content will be injected by JS -->
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const tocLinks = document.querySelectorAll('#toc a');
+            // --- Database ---
+            const grantsData = [
+                { type: 'joseikin', title: '業務改善助成金', purpose: '事業場内で最も低い賃金（事業場内最低賃金）を引き上げ、設備投資などを行った場合に、その費用の一部を助成する制度。', target: '事業場内最低賃金と地域別最低賃金の差額が50円以内で、事業場規模100人以下の中小企業・小規模事業者。', keywords: '最低賃金引上げ, 設備投資, 生産性向上, 賃上げ' },
+                { type: 'hojokin', title: 'IT導入補助金', purpose: '中小企業・小規模事業者の生産性向上を支援するため、ITツール（ソフトウェア、サービス等）の導入費用の一部を補助する制度。', target: '労働生産性の向上を目指す中小企業・小規模事業者。飲食、宿泊、製造、小売など幅広い業種が対象。', keywords: 'DX化, デジタル化, ソフトウェア, クラウド利用, インボイス制度' },
+                { type: 'hojokin', title: 'ものづくり・商業・サービス生産性向上促進補助金（ものづくり補助金）', purpose: '革新的な製品・サービスの開発や生産プロセスの改善に必要な設備投資等を支援する制度。', target: '新製品・新サービス開発や、生産性向上に取り組む中小企業・小規模事業者。', keywords: '設備投資, 試作品開発, 新サービス, 生産性向上' },
+                { type: 'hojokin', title: '事業再構築補助金', purpose: 'ポストコロナ・ウィズコロナ時代の経済社会の変化に対応するため、新分野展開、業態転換、事業・業種転換等の思い切った事業再構築に挑戦する企業を支援する制度。', target: '売上高が減少しており、認定経営革新等支援機関と事業計画を策定する中小企業等。', keywords: '新分野展開, 業態転換, 大規模投資, V字回復' },
+                { type: 'hojokin', title: '小規模事業者持続化補助金', purpose: '小規模事業者が経営計画を策定して取り組む販路開拓等の取組を支援する制度。', target: '常時使用する従業員数が少ない小規模事業者（商業・サービス業は5人以下、その他は20人以下など）。', keywords: '販路開拓, Webサイト作成, チラシ作成, 店舗改装' },
+                { type: 'joseikin', title: '人材開発支援助成金', purpose: '労働者の職業能力開発を促進するため、事業主が労働者に対して訓練等を実施した場合に、訓練経費や訓練期間中の賃金の一部等を助成する制度。', target: '雇用保険の適用事業主。', keywords: '人材育成, リスキリング, 職業訓練, OJT, OFF-JT' },
+                { type: 'joseikin', title: 'キャリアアップ助成金', purpose: '有期雇用労働者、短時間労働者、派遣労働者といった、いわゆる非正規雇用の労働者の企業内でのキャリアアップを促進するため、正社員化、処遇改善の取組を実施した事業主に対して助成する制度。', target: '非正規雇用労働者のキャリアアップに取り組む事業主。', keywords: '正社員化, 非正規雇用, 処遇改善, 人材確保' },
+                { type: 'joseikin', title: 'トライアル雇用助成金', purpose: '職業経験の不足などから就職が困難な求職者を、無期雇用契約へ移行することを前提に、一定期間試行雇用（トライアル雇用）する事業主に対して助成する制度。', target: 'ハローワーク等の紹介により、対象労働者を試行的に雇用する事業主。', keywords: '未経験者, 採用, 試用期間, 就職困難者' }
+            ];
+
+            const partnerServiceData = {
+                'modal-marketing': {
+                    title: 'マーケティング & 営業支援',
+                    services: ['Sales Marker', 'Recruit Marker', 'デジタル広告', '営業代行各商材']
+                },
+                'modal-creative': {
+                    title: 'クリエイティブ & 制作',
+                    services: ['コンテンツ制作', 'メールマーケティング']
+                },
+                'modal-consulting': {
+                    title: '経営コンサルティング',
+                    services: ['飲食店コンサルティング', '税理サービス']
+                },
+                'modal-lifestyle': {
+                    title: 'ライフスタイル & その他',
+                    services: ['旅行代理店', '最先端がん診断', '内装工事関連', '投資対象商材']
+                }
+            };
+            
+            const requiredDocumentsData = {
+                'career-up': {
+                    title: 'キャリアアップ助成金',
+                    customer: ['雇用契約書', '労働者名簿', '賃金台帳', '出勤簿（タイムカード）'],
+                    nmc: ['就業規則（正社員転換制度の規定）', 'キャリアアップ計画届', '支給申請書']
+                },
+                'point-back': {
+                    title: '人材開発支援助成金',
+                    customer: ['訓練経費が確認できる領収書・請求書', '訓練中の賃金台帳・出勤簿', '訓練カリキュラム・内容がわかる資料'],
+                    nmc: ['訓練計画届', '支給申請書']
+                },
+                'it-hojokin': {
+                    title: 'IT導入補助金',
+                    customer: ['履歴事項全部証明書（3ヶ月以内）', '法人税の納税証明書（その1またはその2）'],
+                    nmc: ['事業計画の策定支援', 'ITツールの代理申請']
+                },
+                'monodukuri-hojokin': {
+                    title: 'ものづくり補助金',
+                    customer: ['直近2年分の決算書（貸借対照表、損益計算書など）', '従業員数の確認書類', '賃上げ計画の表明書'],
+                    nmc: ['事業計画書の策定支援', '申請マイページの作成支援']
+                },
+                'gyomukaizen-joseikin': {
+                    title: '業務改善助成金',
+                    customer: ['事業場内最低賃金がわかる書類（賃金台帳など）', '設備投資の見積書・相見積書', '生産性向上のための計画書'],
+                    nmc: ['事業実施計画書の作成支援', '支給申請書']
+                }
+            };
+
+            // --- Element Selectors ---
+            const mainNavLinks = document.querySelectorAll('.main-nav-link');
+            const subNavLinks = document.querySelectorAll('.sub-nav-link');
             const contentSections = document.querySelectorAll('.content-section');
+            const programTabs = document.querySelectorAll('.program-tab');
+            const programTabPanels = document.querySelectorAll('.program-tab-panel');
             const searchInput = document.getElementById('searchInput');
             const mainContent = document.getElementById('main-content');
+            
+            // Partner Modal UI Elements
+            const partnerModal = document.getElementById('partner-modal');
+            const modalContent = partnerModal.querySelector('.modal-content');
+            const modalBody = document.getElementById('modal-body');
+            const modalCloseBtn = partnerModal.querySelector('.modal-close-btn');
+
             let originalContent = mainContent.innerHTML;
 
-            // Function to show a section
-            function showSection(hash) {
-                contentSections.forEach(section => {
-                    section.classList.remove('active');
-                });
+            // --- Functions ---
+            function showSection(hash, activateTab = null) {
+                contentSections.forEach(section => section.classList.remove('active'));
                 const targetSection = document.querySelector(hash);
                 if (targetSection) {
                     targetSection.classList.add('active');
+                    if (activateTab) {
+                        const tabButton = document.querySelector(`button[data-tab-target="${activateTab}"]`);
+                        if (tabButton) tabButton.click();
+                    }
                 } else {
-                    document.querySelector('#home').classList.add('active'); // Fallback to home
+                    document.querySelector('#home').classList.add('active');
+                }
+            }
+            
+            function handleLinkClick(e, isSubNav = false) {
+                e.preventDefault();
+                
+                if (searchInput.value.trim() !== '') {
+                    searchInput.value = '';
+                    mainContent.innerHTML = originalContent;
+                    attachAllEventListeners(); 
+                }
+
+                const targetId = e.currentTarget.getAttribute('href');
+                let mainSectionId = isSubNav ? '#service-menu' : targetId;
+                let tabId = isSubNav ? targetId : null;
+                
+                history.pushState({ section: mainSectionId, tab: tabId }, null, mainSectionId);
+                showSection(mainSectionId, tabId);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function renderGrants(filterType = null) {
+                const grantSearchResultsContainer = document.getElementById('grantSearchResults');
+                if (!grantSearchResultsContainer) return;
+                grantSearchResultsContainer.innerHTML = '';
+                const filteredData = filterType ? grantsData.filter(g => g.type === filterType) : grantsData;
+                
+                if(filteredData.length === 0) {
+                    grantSearchResultsContainer.innerHTML = `<p class="text-center text-gray-500">該当する制度はありません。</p>`;
+                    return;
+                }
+
+                filteredData.forEach(grant => {
+                    const grantEl = document.createElement('div');
+                    grantEl.className = 'grant-item border rounded-lg p-4 bg-gray-50';
+                    grantEl.innerHTML = `
+                        <h3 class="font-bold text-lg text-blue-800">${grant.title}</h3>
+                        <p class="text-sm text-gray-600 mt-1"><strong>目的:</strong> ${grant.purpose}</p>
+                        <p class="text-sm text-gray-600 mt-1"><strong>対象:</strong> ${grant.target}</p>
+                        <p class="text-sm text-gray-600 mt-1"><strong>キーワード:</strong> ${grant.keywords}</p>
+                    `;
+                    grantSearchResultsContainer.appendChild(grantEl);
+                });
+            }
+
+            function showGrantDetails(type) {
+                const grantChoiceContainer = document.getElementById('grant-choice-container');
+                const grantDetailsWrapper = document.getElementById('grant-details-wrapper');
+                const detailsJoseikin = document.getElementById('details-joseikin');
+                const detailsHojokin = document.getElementById('details-hojokin');
+
+                if (grantChoiceContainer) grantChoiceContainer.style.display = 'none';
+                if (grantDetailsWrapper) grantDetailsWrapper.style.display = 'block';
+                if (detailsJoseikin) detailsJoseikin.style.display = type === 'joseikin' ? 'block' : 'none';
+                if (detailsHojokin) detailsHojokin.style.display = type === 'hojokin' ? 'block' : 'none';
+                renderGrants(type);
+            }
+
+            function openPartnerModal(modalId) {
+                const data = partnerServiceData[modalId];
+                if (!data || !partnerModal) return;
+
+                modalBody.innerHTML = `
+                    <h2 class="text-2xl font-bold mb-4">${data.title}</h2>
+                    <ul class="list-disc list-inside space-y-2">
+                        ${data.services.map(service => `<li class="text-gray-700">${service}</li>`).join('')}
+                    </ul>
+                    <p class="mt-6 text-sm text-gray-500">※詳細なサービス内容については、後日追加予定です。</p>
+                `;
+                
+                partnerModal.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+                setTimeout(() => {
+                    partnerModal.classList.remove('opacity-0');
+                    if (modalContent) modalContent.classList.remove('scale-95');
+                }, 10);
+            }
+
+            function closePartnerModal() {
+                if (!partnerModal) return;
+                partnerModal.classList.add('opacity-0');
+                if (modalContent) modalContent.classList.add('scale-95');
+                setTimeout(() => {
+                    partnerModal.classList.add('hidden');
+                    document.body.classList.remove('overflow-hidden');
+                }, 300);
+            }
+
+            function generateSchedule() {
+                const program = document.getElementById('program-select').value;
+                const dateInput = document.getElementById('hearing-date').value;
+                const resultDiv = document.getElementById('schedule-result');
+
+                if (!dateInput) {
+                    resultDiv.innerHTML = `<p class="text-red-500">ヒアリング日を選択してください。</p>`;
+                    document.getElementById('schedule-documents').innerHTML = '';
+                    return;
+                }
+
+                const hearingDate = new Date(dateInput);
+                
+                const formatDate = (date) => {
+                    return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`;
+                };
+                
+                const addMonths = (date, months) => {
+                    const d = new Date(date);
+                    d.setMonth(d.getMonth() + months);
+                    return d;
+                };
+
+                const addDays = (date, days) => {
+                    const d = new Date(date);
+                    d.setDate(d.getDate() + days);
+                    return d;
+                };
+
+                let title = '';
+                let events = [];
+                let preparationDays = 14; 
+
+                switch(program) {
+                    case 'career-up':
+                        title = 'キャリアアップ助成金 スケジュール目安';
+                        const fullTimeDate = addMonths(hearingDate, 1);
+                        const firstApplicationDate = addMonths(fullTimeDate, 6);
+                        const secondApplicationDate = addMonths(firstApplicationDate, 6);
+                        events = [
+                            { label: 'ヒアリング', date: hearingDate },
+                            { label: '準備期間', date: addDays(hearingDate, preparationDays) },
+                            { label: '正社員転換', date: fullTimeDate },
+                            { label: '1期目申請', date: firstApplicationDate },
+                            { label: '1期目受給', date: addMonths(firstApplicationDate, 3) },
+                            { label: '2期目申請', date: secondApplicationDate },
+                            { label: '2期目受給', date: addMonths(secondApplicationDate, 3) }
+                        ];
+                        break;
+                    case 'point-back':
+                        title = '人材開発支援助成金 スケジュール目安';
+                        const trainingStartDate = addDays(hearingDate, 14);
+                        const applicationDate = addMonths(trainingStartDate, 2);
+                        events = [
+                            { label: 'ヒアリング', date: hearingDate },
+                            { label: '準備期間', date: addDays(hearingDate, preparationDays) },
+                            { label: '研修開始', date: trainingStartDate },
+                            { label: '支給申請', date: applicationDate },
+                            { label: '受給時期', date: addMonths(applicationDate, 3) }
+                        ];
+                        break;
+                    case 'it-hojokin':
+                        title = 'IT導入補助金 スケジュール目安';
+                        preparationDays = 21; 
+                        const itApplyDate = addDays(hearingDate, preparationDays);
+                        const itAdoptDate = addMonths(itApplyDate, 1);
+                        const itReportDate = addMonths(itAdoptDate, 3);
+                        events = [
+                            { label: 'ヒアリング', date: hearingDate },
+                            { label: '準備期間', date: itApplyDate },
+                            { label: '採択発表', date: itAdoptDate },
+                            { label: '事業報告', date: itReportDate },
+                            { label: '受給時期', date: addMonths(itReportDate, 2) }
+                        ];
+                        break;
+                    case 'monodukuri-hojokin':
+                        title = 'ものづくり補助金 スケジュール目安';
+                        preparationDays = 30;
+                        const monoApplyDate = addDays(hearingDate, preparationDays);
+                        const monoAdoptDate = addMonths(monoApplyDate, 2);
+                        const monoReportDate = addMonths(monoAdoptDate, 6);
+                        events = [
+                            { label: 'ヒアリング', date: hearingDate },
+                            { label: '準備期間', date: monoApplyDate },
+                            { label: '採択発表', date: monoAdoptDate },
+                            { label: '事業報告', date: monoReportDate },
+                            { label: '受給時期', date: addMonths(monoReportDate, 2) }
+                        ];
+                        break;
+                    case 'gyomukaizen-joseikin':
+                        title = '業務改善助成金 スケジュール目安';
+                        const planSubmitDate = addDays(hearingDate, 14);
+                        const wageIncreaseDate = addMonths(planSubmitDate, 3);
+                        const gyomuApplyDate = addMonths(wageIncreaseDate, 1);
+                        events = [
+                            { label: 'ヒアリング', date: hearingDate },
+                            { label: '準備期間', date: planSubmitDate },
+                            { label: '賃金引上げ', date: wageIncreaseDate },
+                            { label: '支給申請', date: gyomuApplyDate },
+                            { label: '受給時期', date: addMonths(gyomuApplyDate, 3) }
+                        ];
+                        break;
+                }
+                
+                const oneDay = 24 * 60 * 60 * 1000;
+                const totalDays = Math.max(1, Math.round(Math.abs((events[events.length - 1].date - events[0].date) / oneDay)));
+                const svgWidth = 800;
+                const padding = 60;
+
+                let timelineSvg = `<h3 class="text-xl font-bold mb-4 border-b pb-2">${title}</h3>`;
+                timelineSvg += `<div class="w-full overflow-x-auto"><svg class="timeline-svg" width="${svgWidth}" height="150">`;
+                timelineSvg += `<line x1="${padding}" y1="50" x2="${svgWidth - padding}" y2="50" stroke="#cbd5e1" stroke-width="2"/>`;
+
+                events.forEach((event, index) => {
+                    const daysFromStart = Math.round(Math.abs((event.date - events[0].date) / oneDay));
+                    const xPos = (daysFromStart / totalDays) * (svgWidth - padding * 2) + padding;
+                    
+                    const isLast = index === events.length - 1;
+                    const color = isLast ? '#16a34a' : '#3b82f6'; // Green for last, blue for others
+
+                    timelineSvg += `<circle cx="${xPos}" cy="50" r="6" fill="${color}" />`;
+                    timelineSvg += `<line x1="${xPos}" y1="50" x2="${xPos}" y2="70" stroke="${color}" stroke-width="2"/>`;
+                    timelineSvg += `<text x="${xPos}" y="90" text-anchor="middle" font-size="12" fill="#4b5563">${event.label}</text>`;
+                    timelineSvg += `<text x="${xPos}" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e293b">${formatDate(event.date)}</text>`;
+                });
+
+                timelineSvg += `</svg></div>`;
+                timelineSvg += `<p class="text-xs text-gray-500 mt-4">※上記はあくまで一般的な目安です。公募回や審査状況により変動します。</p>`;
+                
+                resultDiv.innerHTML = timelineSvg;
+                renderRequiredDocuments(program);
+            }
+
+            function renderRequiredDocuments(program) {
+                const documentsDiv = document.getElementById('schedule-documents');
+                const data = requiredDocumentsData[program];
+                if (!data) {
+                    documentsDiv.innerHTML = '';
+                    return;
+                }
+
+                let documentsHtml = `
+                    <h3 class="text-xl font-bold mb-4 border-b pb-2">必要書類一覧（${data.title}）</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">✅ お客様にご用意いただくもの</h4>
+                            <ul class="list-disc list-inside space-y-2 bg-gray-50 p-4 rounded-md">
+                                ${data.customer.map(doc => `<li class="text-sm">${doc}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">📝 当社で準備・サポートするもの</h4>
+                            <ul class="list-disc list-inside space-y-2 bg-blue-50 p-4 rounded-md">
+                                ${data.nmc.map(doc => `<li class="text-sm">${doc}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                documentsDiv.innerHTML = documentsHtml;
+            }
+
+            function attachAllEventListeners() {
+                // Re-select all elements within the current mainContent scope
+                document.querySelectorAll('.main-nav-link').forEach(link => link.addEventListener('click', (e) => handleLinkClick(e, false)));
+                document.querySelectorAll('.sub-nav-link').forEach(link => link.addEventListener('click', (e) => handleLinkClick(e, true)));
+                document.querySelectorAll('.program-tab').forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        document.querySelectorAll('.program-tab').forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+                        const target = document.querySelector(tab.dataset.tabTarget);
+                        document.querySelectorAll('.program-tab-panel').forEach(panel => panel.classList.remove('active'));
+                        if (target) target.classList.add('active');
+                    });
+                });
+                
+                const grantSearchInputEl = document.getElementById('grantSearchInput');
+                if (grantSearchInputEl) {
+                    grantSearchInputEl.addEventListener('input', function() {
+                        const query = this.value.toLowerCase();
+                        document.querySelectorAll('#grantSearchResults .grant-item').forEach(item => {
+                            item.style.display = item.textContent.toLowerCase().includes(query) ? 'block' : 'none';
+                        });
+                    });
+                }
+                
+                const choiceJoseikinEl = document.getElementById('choice-joseikin');
+                if(choiceJoseikinEl) choiceJoseikinEl.addEventListener('click', () => showGrantDetails('joseikin'));
+
+                const choiceHojokinEl = document.getElementById('choice-hojokin');
+                if(choiceHojokinEl) choiceHojokinEl.addEventListener('click', () => showGrantDetails('hojokin'));
+
+                const backToChoiceBtnEl = document.getElementById('back-to-choice');
+                if(backToChoiceBtnEl) backToChoiceBtnEl.addEventListener('click', () => {
+                    const grantDetailsWrapper = document.getElementById('grant-details-wrapper');
+                    const grantChoiceContainer = document.getElementById('grant-choice-container');
+                    if (grantDetailsWrapper) grantDetailsWrapper.style.display = 'none';
+                    if (grantChoiceContainer) grantChoiceContainer.style.display = 'grid';
+                });
+
+                document.querySelectorAll('.partner-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        openPartnerModal(card.dataset.modalTarget);
+                    });
+                });
+
+                const modalCloseBtnEl = document.querySelector('.modal-close-btn');
+                if(modalCloseBtnEl) modalCloseBtnEl.addEventListener('click', closePartnerModal);
+                
+                const partnerModalEl = document.getElementById('partner-modal');
+                if(partnerModalEl) partnerModalEl.addEventListener('click', (e) => {
+                    if (e.target === partnerModalEl) {
+                        closePartnerModal();
+                    }
+                });
+
+                const generateScheduleBtn = document.getElementById('generate-schedule-btn');
+                if (generateScheduleBtn) {
+                    generateScheduleBtn.addEventListener('click', generateSchedule);
                 }
             }
 
-            // Handle navigation clicks
-            tocLinks.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    history.pushState(null, null, targetId); // Update URL without reloading
-                    showSection(targetId);
-                });
+            // --- Initial Setup & Event Listeners ---
+            attachAllEventListeners();
+
+            window.addEventListener('popstate', function (e) {
+                const state = e.state || { section: '#home', tab: null };
+                showSection(state.section, state.tab);
             });
+
+            const initialHash = window.location.hash;
+            if (initialHash.startsWith('#program-')) {
+                 showSection('#service-menu', initialHash);
+            } else {
+                 showSection(initialHash || '#home');
+            }
             
-            // Handle FAQ links
-            document.querySelectorAll('a[href^="#program-"]').forEach(link => {
-                 link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    history.pushState(null, null, targetId);
-                    showSection(targetId);
-                    window.scrollTo({ top: document.querySelector(targetId).offsetTop - 20, behavior: 'smooth' });
-                });
-            });
-
-            // Handle browser back/forward buttons
-            window.addEventListener('popstate', function () {
-                showSection(location.hash || '#home');
-            });
-
-            // Initial load
-            showSection(location.hash || '#home');
-
-            // --- Search Functionality ---
+            // --- Global Search Functionality ---
             let searchTimeout;
             searchInput.addEventListener('input', function () {
                 clearTimeout(searchTimeout);
                 searchTimeout = setTimeout(() => {
                     performSearch(this.value.trim());
-                }, 300); // Debounce search input
+                }, 300);
             });
 
             function performSearch(query) {
-                // Restore original content before a new search
                 mainContent.innerHTML = originalContent;
-                
-                // Re-add event listeners to restored content
-                document.querySelectorAll('a[href^="#program-"]').forEach(link => {
-                     link.addEventListener('click', function (e) {
-                        e.preventDefault();
-                        const targetId = this.getAttribute('href');
-                        history.pushState(null, null, targetId);
-                        showSection(targetId);
-                        window.scrollTo({ top: document.querySelector(targetId).offsetTop - 20, behavior: 'smooth' });
-                    });
-                });
+                attachAllEventListeners();
 
                 if (query === '') {
-                    showSection(location.hash || '#home');
+                    const currentHash = window.location.hash;
+                     if (currentHash.startsWith('#program-')) {
+                         showSection('#service-menu', currentHash);
+                    } else {
+                         showSection(currentHash || '#home');
+                    }
                     return;
                 }
 
-                // Show all sections to search through them
                 contentSections.forEach(section => section.classList.add('active'));
-
                 const regex = new RegExp(query, 'gi');
                 let matchFound = false;
+                const allSearchableContent = document.querySelectorAll('.content-section, .program-tab-panel');
 
-                contentSections.forEach(section => {
-                    const textNodes = getTextNodes(section);
-                    let sectionHasMatch = false;
+                allSearchableContent.forEach(element => {
+                    const textNodes = getTextNodes(element);
                     textNodes.forEach(node => {
-                        const matches = node.nodeValue.match(regex);
-                        if (matches) {
+                        if (node.nodeValue.match(regex)) {
                             matchFound = true;
-                            sectionHasMatch = true;
                             const newNode = document.createElement('span');
                             newNode.innerHTML = node.nodeValue.replace(regex, `<span class="search-highlight">$&</span>`);
                             node.parentNode.replaceChild(newNode, node);
                         }
                     });
-                     // Hide sections that don't have a match
-                    if (!sectionHasMatch) {
+                });
+                
+                contentSections.forEach(section => {
+                    if (!section.querySelector('.search-highlight')) {
                         section.classList.remove('active');
                     }
                 });
@@ -385,10 +922,8 @@
 
             function getTextNodes(node) {
                 let textNodes = [];
-                if (node.nodeType === 3) { // Node.TEXT_NODE
-                    if (node.nodeValue.trim() !== '') {
-                        textNodes.push(node);
-                    }
+                if (node.nodeType === 3) {
+                    if (node.nodeValue.trim() !== '') textNodes.push(node);
                 } else {
                     for (let i = 0, len = node.childNodes.length; i < len; ++i) {
                         textNodes = textNodes.concat(getTextNodes(node.childNodes[i]));
@@ -402,7 +937,6 @@
                 p.appendChild(document.createTextNode(str));
                 return p.innerHTML;
             }
-
         });
     </script>
 </body>
