@@ -78,8 +78,11 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <!-- Table of Contents -->
-            <aside class="lg:col-span-1 bg-white p-6 rounded-xl shadow-md h-fit sticky top-8">
-                <h2 class="text-xl font-bold mb-4 border-b pb-2">Table</h2>
+            <aside id="toc-sidebar" class="lg:col-span-1 bg-white p-6 rounded-xl shadow-md h-fit sticky top-8">
+                <div class="flex justify-between items-center mb-4 border-b pb-2">
+                    <h2 class="text-xl font-bold">Table</h2>
+                    <button id="toc-toggle" class="text-sm text-gray-500 hover:text-black">[非表示]</button>
+                </div>
                 <nav id="toc" class="space-y-2">
                     <a href="#home" class="main-nav-link block font-medium text-gray-700 hover:text-blue-600"><span class="w-7 inline-block">01.</span>TOP</a>
                     <div>
@@ -139,7 +142,7 @@
                             <p class="mb-4">人材開発支援助成金を活用し、従業員のリスキリングと経営投資を同時に実現する当社独自のプログラムです。</p>
                             
                             <h3 class="text-xl font-bold mt-6 mb-3">プログラムの全体スケジュール</h3>
-                            <p class="text-sm mb-4">契約から受給までは最大で約9ヶ月、ポイント付与までは約10ヶ月かかります。各ステップの期間は目安です。</p>
+                            <p class="text-sm mb-4">契約から受給までは最大で約9ヶ月、ポイント付与はご入金の翌月から利用可能になります。</p>
                             <div class="w-full overflow-x-auto bg-gray-50 p-4 rounded-lg">
                                 <svg class="timeline-svg" width="1000" height="180">
                                      <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#9ca3af"/></marker></defs>
@@ -148,37 +151,32 @@
                                      <!-- Step 1 -->
                                      <g transform="translate(60, 80)">
                                          <circle cx="0" cy="0" r="8" fill="#3b82f6" /><text x="0" y="-25" text-anchor="middle" font-size="12" font-weight="bold">1</text>
-                                         <text x="0" y="30" text-anchor="middle" font-size="12">契約・請求</text><text x="0" y="50" text-anchor="middle" font-size="12" fill="#4b5563">開始日</text>
+                                         <text x="0" y="30" text-anchor="middle" font-size="12">契約/請求/入金</text><text x="0" y="50" text-anchor="middle" font-size="12" fill="#4b5563">開始日</text>
                                      </g>
                                      <!-- Step 2 -->
                                      <g transform="translate(180, 80)">
-                                         <circle cx="0" cy="0" r="8" fill="#3b82f6" /><text x="0" y="-25" text-anchor="middle" font-size="12" font-weight="bold">2</text>
-                                         <text x="0" y="30" text-anchor="middle" font-size="12">申請準備</text><text x="0" y="50" text-anchor="middle" font-size="12" fill="#4b5563">〜1ヶ月</text>
+                                         <circle cx="0" cy="0" r="8" fill="#16a34a" /><text x="0" y="-25" text-anchor="middle" font-size="12" font-weight="bold">2</text>
+                                         <text x="0" y="30" text-anchor="middle" font-size="12">ポイント付与</text><text x="0" y="50" text-anchor="middle" font-size="12" fill="#14532d">入金翌月〜</text>
                                      </g>
                                      <!-- Step 3 -->
-                                     <g transform="translate(300, 80)">
+                                     <g transform="translate(320, 80)">
                                          <circle cx="0" cy="0" r="8" fill="#3b82f6" /><text x="0" y="-25" text-anchor="middle" font-size="12" font-weight="bold">3</text>
                                          <text x="0" y="30" text-anchor="middle" font-size="12">計画申請</text><text x="0" y="50" text-anchor="middle" font-size="12" fill="#4b5563">〜2ヶ月</text>
                                      </g>
                                      <!-- Step 4 -->
-                                     <g transform="translate(450, 80)">
+                                     <g transform="translate(470, 80)">
                                          <circle cx="0" cy="0" r="8" fill="#3b82f6" /><text x="0" y="-25" text-anchor="middle" font-size="12" font-weight="bold">4</text>
                                          <text x="0" y="30" text-anchor="middle" font-size="12">研修受講</text><text x="0" y="50" text-anchor="middle" font-size="12" fill="#4b5563">DX/GX 各10h〜</text>
                                      </g>
                                      <!-- Step 5 -->
-                                     <g transform="translate(620, 80)">
+                                     <g transform="translate(640, 80)">
                                          <circle cx="0" cy="0" r="8" fill="#3b82f6" /><text x="0" y="-25" text-anchor="middle" font-size="12" font-weight="bold">5</text>
                                          <text x="0" y="30" text-anchor="middle" font-size="12">支給申請</text><text x="0" y="50" text-anchor="middle" font-size="12" fill="#4b5563">受講完了後</text>
                                      </g>
                                      <!-- Step 6 -->
-                                     <g transform="translate(790, 80)">
+                                     <g transform="translate(850, 80)">
                                          <circle cx="0" cy="0" r="8" fill="#3b82f6" /><text x="0" y="-25" text-anchor="middle" font-size="12" font-weight="bold">6</text>
                                          <text x="0" y="30" text-anchor="middle" font-size="12">受給</text><text x="0" y="50" text-anchor="middle" font-size="12" fill="#4b5563">最大9ヶ月後</text>
-                                     </g>
-                                     <!-- Step 7 -->
-                                     <g transform="translate(920, 80)">
-                                         <circle cx="0" cy="0" r="8" fill="#16a34a" /><text x="0" y="-25" text-anchor="middle" font-size="12" font-weight="bold">7</text>
-                                         <text x="0" y="30" text-anchor="middle" font-size="12">ポイント付与</text><text x="0" y="50" text-anchor="middle" font-size="12" fill="#14532d">受給翌月</text>
                                      </g>
                                 </svg>
                             </div>
@@ -751,13 +749,12 @@
                     case 'point-back':
                         title = '人材開発支援助成金 / リスキリングスキーム スケジュール目安';
                         events = [
-                            { label: '契約・請求', date: hearingDate },
-                            { label: '申請準備', date: addDays(hearingDate, 30) },
+                            { label: '契約/請求/入金', date: hearingDate },
+                            { label: 'ポイント付与', date: addMonths(hearingDate, 1) },
                             { label: '計画申請', date: addDays(hearingDate, 60) },
                             { label: '研修受講', date: addDays(hearingDate, 70) },
                             { label: '支給申請', date: addMonths(addDays(hearingDate, 70), 1) },
-                            { label: '受給', date: addMonths(hearingDate, 9) },
-                            { label: 'ポイント付与', date: addMonths(hearingDate, 10) }
+                            { label: '受給', date: addMonths(hearingDate, 9) }
                         ];
                         break;
                     case 'it-hojokin':
