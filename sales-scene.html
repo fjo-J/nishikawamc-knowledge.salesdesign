@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社内向け 助成金・補助金ナレッジベース | 西河マネジメントセンター</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .search-highlight {
+            background-color: #fde047; /* yellow-300 */
+            border-radius: 2px;
+        }
+        #toc a {
+            transition: all 0.2s ease-in-out;
+        }
+        #toc a:hover {
+            transform: translateX(4px);
+            color: #2563eb; /* blue-600 */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="bg-white p-6 rounded-xl shadow-md mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">社内ナレッジベース</h1>
+                    <p class="text-gray-600 mt-1">株式会社西河マネジメントセンター</p>
+                </div>
+                <div class="mt-4 md:mt-0 w-full md:w-1/2">
+                    <input type="text" id="searchInput" placeholder="キーワードで検索 (例: キャリアアップ, ポイント)..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Table of Contents -->
+            <aside class="lg:col-span-1 bg-white p-6 rounded-xl shadow-md h-fit sticky top-8">
+                <h2 class="text-xl font-bold mb-4 border-b pb-2">目次</h2>
+                <nav id="toc" class="space-y-3">
+                    <a href="#home" class="block font-medium text-gray-700 hover:text-blue-600">トップページ</a>
+                    <a href="#service-summary" class="block font-medium text-gray-700 hover:text-blue-600">当社事業概要</a>
+                    <a href="#program-point-back" class="block font-medium text-gray-700 hover:text-blue-600">ポイントバックプログラム</a>
+                    <a href="#program-career-up" class="block font-medium text-gray-700 hover:text-blue-600">キャリアアップ助成金減額回避</a>
+                    <a href="#point-partners" class="block font-medium text-gray-700 hover:text-blue-600">ポイント利用先一覧</a>
+                    <a href="#security-sheet" class="block font-medium text-gray-700 hover:text-blue-600">セキュリティチェックシート</a>
+                    <a href="#how-to-add" class="block font-medium text-gray-700 hover:text-blue-600">ナレッジの追加方法</a>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main id="main-content" class="lg:col-span-3 space-y-8">
+                <!-- Home Section -->
+                <section id="home" class="content-section active bg-white p-8 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">ようこそ</h2>
+                    <p class="mb-4">このナレッジベースは、営業担当者が助成金・補助金に関する情報を迅速にキャッチアップし、お客様に的確な提案を行うための社内ツールです。</p>
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                        <h3 class="font-bold text-blue-800">ツールの目的</h3>
+                        <ul class="list-disc list-inside mt-2 text-blue-700">
+                            <li>社内の知識レベルを統一し、誰でもフロント対応ができる状態にする。</li>
+                            <li>複雑なサービス（ポイント利用、助成金組み合わせ）の理解を促進する。</li>
+                            <li>顧客からの質問やセキュリティチェックシートに迅速かつ正確に回答する。</li>
+                        </ul>
+                    </div>
+                     <h3 class="text-xl font-bold mt-6 mb-3">よくある質問 (FAQ)</h3>
+                    <div class="space-y-2">
+                        <p><a href="#program-career-up" class="text-blue-600 hover:underline">Q: キャリアアップ助成金が減額されるって本当？どうすれば回避できる？</a></p>
+                        <p><a href="#program-point-back" class="text-blue-600 hover:underline">Q: 研修を受けるとポイントが貰える仕組みについて教えて。</a></p>
+                        <p><a href="#program-point-back" class="text-blue-600 hover:underline">Q: 実質無料で研修を受けられるってどういうこと？</a></p>
+                        <p><a href="#point-partners" class="text-blue-600 hover:underline">Q: 貯まったポイントはどこで使えるの？</a></p>
+                    </div>
+                </section>
+
+                <!-- Service Summary Section -->
+                <section id="service-summary" class="content-section bg-white p-8 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">当社事業概要</h2>
+                    <p class="mb-4">西河マネジメントセンターは、コンサルティング、研修、申請代行をワンストップで提供し、事業同士が連携することで顧客の事業成長を最大化します。</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 p-4 rounded-lg border">
+                            <h3 class="font-bold text-lg">主力事業：研修事業</h3>
+                            <p>DX/GX研修、ニューロポテンシャル研修などを提供。助成金との組み合わせで高い付加価値を生み出す。</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg border">
+                            <h3 class="font-bold text-lg">収益事業：申請代行事業</h3>
+                            <p>補助金・助成金の申請業務を代行。安定した収益基盤。</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg border">
+                            <h3 class="font-bold text-lg">育成事業：経営労務人事コンサル</h3>
+                            <p>今後の成長が見込まれる領域。専門知識を活かし、企業の課題を解決。</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg border">
+                            <h3 class="font-bold text-lg">判断事業：補助金助成金コンサル</h3>
+                            <p>顧客へのメリット提供は大きいが、収益化が課題。研修事業との連携で強化。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Point Back Program Section -->
+                <section id="program-point-back" class="content-section bg-white p-8 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">人材開発支援助成金 / ポイントバックプログラム</h2>
+                    <p class="mb-4">人材開発支援助成金を活用し、従業員のリスキリングと経営投資を同時に実現する当社独自のプログラムです。</p>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg mb-6">
+                        <h3 class="font-bold text-green-800">プログラムの核心</h3>
+                        <p class="text-green-700">企業は助成金で研修費用の大半をカバーし、さらに当社から提供される「ポイント」で紹介元パートナーのサービスを利用できます。これにより、<strong class="font-bold">実質的な自己負担を大幅に軽減、あるいはプラスにする</strong>ことが可能です。</p>
+                    </div>
+
+                    <h3 class="text-xl font-bold mt-6 mb-3">モデルケース (2025年3月〜)</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="p-3 border">項目</th>
+                                    <th class="p-3 border">金額</th>
+                                    <th class="p-3 border">説明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-3 border">DX/GX研修費用</td>
+                                    <td class="p-3 border">60万円/名</td>
+                                    <td class="p-3 border">企業が一時的に負担する研修費用。</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border font-medium">人材開発支援助成金</td>
+                                    <td class="p-3 border text-green-600 font-bold">- 48万円/名</td>
+                                    <td class="p-3 border">国から企業へ支給される助成金。</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="p-3 border">企業の実質負担額</td>
+                                    <td class="p-3 border">12万円/名</td>
+                                    <td class="p-3 border">研修費用から助成金を差し引いた金額。</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border font-medium">提携サービス利用可能ポイント</td>
+                                    <td class="p-3 border text-blue-600 font-bold">+ 24万円分</td>
+                                    <td class="p-3 border">当社から企業へ提供。紹介元パートナーのサービスに利用可能。</td>
+                                </tr>
+                                <tr class="bg-yellow-50">
+                                    <td class="p-3 border font-bold">最終的な企業のメリット</td>
+                                    <td class="p-3 border text-red-600 font-bold">+ 12万円相当</td>
+                                    <td class="p-3 border">実質負担額をポイントが上回り、企業にとってプラスになる計算。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- Career Up Program Section -->
+                <section id="program-career-up" class="content-section bg-white p-8 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">キャリアアップ助成金 / 減額回避プログラム</h2>
+                    <p class="mb-4">2025年度からのキャリアアップ助成金（正社員化コース）の制度変更による支給額減額を、当社の研修プログラムと組み合わせることで回避します。</p>
+
+                    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg mb-6">
+                        <h3 class="font-bold text-red-800">制度変更のポイント</h3>
+                        <p class="text-red-700">これまで合計80万円（40万×2回）支給されていたものが、<strong class="font-bold">2025年度から40万円（1回のみ）に減額</strong>されます。しかし、<strong class="font-bold">非正規雇用期間中に特定の研修を受講</strong>することで、2回目の40万円（加算措置）も受給可能になります。</p>
+                    </div>
+
+                    <h3 class="text-xl font-bold mt-6 mb-3">費用と助成金の流れ</h3>
+                    <p class="mb-4">顧客の混乱を避けるため、「研修費用」と「キャリアアップ助成金」は分けて説明することが重要です。</p>
+
+                    <h4 class="font-bold mt-4 mb-2">1. リスキリング研修について</h4>
+                     <div class="overflow-x-auto mb-6">
+                        <table class="w-full text-left border-collapse">
+                             <thead class="bg-gray-100">
+                                <tr><th class="p-3 border">研修内容</th><th class="p-3 border">研修費用</th><th class="p-3 border">人開金助成額</th><th class="p-3 border">自己負担</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="p-3 border">DX研修</td><td class="p-3 border">30万円</td><td class="p-3 border">24万円</td><td class="p-3 border">6万円</td></tr>
+                                <tr><td class="p-3 border">GX研修</td><td class="p-3 border">30万円</td><td class="p-3 border">24万円</td><td class="p-3 border">6万円</td></tr>
+                                <tr class="bg-gray-50 font-bold"><td class="p-3 border">合計</td><td class="p-3 border">60万円</td><td class="p-3 border">48万円</td><td class="p-3 border">12万円</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4 class="font-bold mt-4 mb-2">2. キャリアアップ助成金について</h4>
+                     <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                           <thead class="bg-gray-100">
+                                <tr><th class="p-3 border">申請タイミング</th><th class="p-3 border">キャリアアップ助成金 支給額</th><th class="p-3 border">当社手数料</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="p-3 border">1期目 (正社員化6ヶ月後)</td><td class="p-3 border">40万円</td><td class="p-3 border">8万円</td></tr>
+                                <tr><td class="p-3 border">2期目 (さらに6ヶ月後)</td><td class="p-3 border"><strong class="text-green-600">40万円 (研修による加算措置)</strong></td><td class="p-3 border">8万円</td></tr>
+                                <tr class="bg-gray-50 font-bold"><td class="p-3 border">合計</td><td class="p-3 border">80万円</td><td class="p-3 border">16万円</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                        <h4 class="font-bold text-lg">顧客の最終的な収支</h4>
+                        <p>申請手数料合計(16万円)は、研修の自己負担分(12万円)から差し引く形で提案します。</p>
+                        <p class="text-center text-xl font-bold mt-2">16万円 (手数料) - 12万円 (研修自己負担) = <span class="text-blue-600">実質4万円の手数料</span></p>
+                        <p class="text-center mt-1">となり、顧客は少ない負担で<strong class="font-bold">40万円の助成金減額を回避</strong>できます。</p>
+                    </div>
+                </section>
+
+                <!-- Point Partners Section -->
+                <section id="point-partners" class="content-section bg-white p-8 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">ポイント利用先一覧</h2>
+                    <p class="mb-4">ポイントバックプログラムで獲得したポイントは、以下の提携サービスでご利用いただけます。（順次拡大中）</p>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="bg-gray-100 p-3 rounded-md text-center">Sales Marker</div>
+                        <div class="bg-gray-100 p-3 rounded-md text-center">Recruit Marker</div>
+                        <div class="bg-gray-100 p-3 rounded-md text-center">デジタル広告</div>
+                        <div class="bg-gray-100 p-3 rounded-md text-center">コンテンツ制作</div>
+                        <div class="bg-gray-100 p-3 rounded-md text-center">メールマーケティング</div>
+                        <div class="bg-gray-100 p-3 rounded-md text-center">旅行代理店</div>
+                        <div class="bg-gray-100 p-3 rounded-md text-center">営業代行各商材</div>
+                        <div class="bg-gray-100 p-3 rounded-md text-center">飲食店コンサルティング</div>
+                        <div class="bg-gray-100 p-3 rounded-md text-center">税理サービス</div>
+                        <div class="bg-gray-100 p-3 rounded-md text-center">内装工事関連</div>
+                        <div class="bg-gray-100 p-3 rounded-md text-center">最先端がん診断</div>
+                        <div class="bg-gray-100 p-3 rounded-md text-center">投資対象商材</div>
+                    </div>
+                </section>
+
+                <!-- Security Sheet Section -->
+                <section id="security-sheet" class="content-section bg-white p-8 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">セキュリティチェックシート 回答例</h2>
+                    <p class="mb-4">汎用的な回答を準備しています。企業ごとに内容は調整してください。</p>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-bold">Q. 情報セキュリティポリシーは策定されていますか？</h3>
+                            <p class="bg-gray-50 p-3 mt-1 rounded-md border">A. はい、策定しております。情報資産を適切に保護するための基本方針を定め、全従業員に周知徹底しております。</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Q. 従業員へのセキュリティ教育は実施していますか？</h3>
+                            <p class="bg-gray-50 p-3 mt-1 rounded-md border">A. はい、年1回以上の情報セキュリティに関する研修を実施しております。また、新入社員研修においても必須項目として教育を行っております。</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Q. 個人情報の取り扱いについて教えてください。</h3>
+                            <p class="bg-gray-50 p-3 mt-1 rounded-md border">A. 個人情報保護法および関連法令を遵守し、プライバシーポリシーに基づき適正な管理・運用を行っております。お客様からお預かりした個人情報は、同意を得た目的の範囲内でのみ利用いたします。</p>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Q. ウイルス対策ソフトは導入されていますか？</h3>
+                            <p class="bg-gray-50 p-3 mt-1 rounded-md border">A. 全ての業務用PCにウイルス対策ソフトを導入し、定義ファイルを常に最新の状態に保っております。</p>
+                        </div>
+                         <div>
+                            <h3 class="font-bold">Q. データのバックアップは取得していますか？</h3>
+                            <p class="bg-gray-50 p-3 mt-1 rounded-md border">A. はい、重要なデータについては定期的にバックアップを取得し、安全な場所に保管しております。また、定期的にリストアテストを実施し、有事の際に備えております。</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- How to Add Knowledge Section -->
+                <section id="how-to-add" class="content-section bg-white p-8 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">ナレッジの追加方法</h2>
+                    <p class="mb-4">このツールは単一のHTMLファイルで構成されています。新しい情報を追加・編集する場合は、このファイルを直接編集してください。</p>
+                    <div class="bg-gray-800 text-white p-4 rounded-lg font-mono text-sm">
+                        <code>
+                            &lt;!-- 新しいセクションの追加例 --&gt;<br>
+                            &lt;section id="new-section" class="content-section bg-white p-8 rounded-xl shadow-md"&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;h2 class="text-2xl font-bold mb-4"&gt;新しい助成金のタイトル&lt;/h2&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;ここに説明文を追加します。&lt;/p&gt;<br>
+                            &lt;/section&gt;
+                        </code>
+                    </div>
+                    <p class="mt-4">編集後、ファイルを保存し、GitHubにプッシュすることで、チーム全体に共有されます。</p>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tocLinks = document.querySelectorAll('#toc a');
+            const contentSections = document.querySelectorAll('.content-section');
+            const searchInput = document.getElementById('searchInput');
+            const mainContent = document.getElementById('main-content');
+            let originalContent = mainContent.innerHTML;
+
+            // Function to show a section
+            function showSection(hash) {
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                const targetSection = document.querySelector(hash);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                } else {
+                    document.querySelector('#home').classList.add('active'); // Fallback to home
+                }
+            }
+
+            // Handle navigation clicks
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    history.pushState(null, null, targetId); // Update URL without reloading
+                    showSection(targetId);
+                });
+            });
+            
+            // Handle FAQ links
+            document.querySelectorAll('a[href^="#program-"]').forEach(link => {
+                 link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    history.pushState(null, null, targetId);
+                    showSection(targetId);
+                    window.scrollTo({ top: document.querySelector(targetId).offsetTop - 20, behavior: 'smooth' });
+                });
+            });
+
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', function () {
+                showSection(location.hash || '#home');
+            });
+
+            // Initial load
+            showSection(location.hash || '#home');
+
+            // --- Search Functionality ---
+            let searchTimeout;
+            searchInput.addEventListener('input', function () {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    performSearch(this.value.trim());
+                }, 300); // Debounce search input
+            });
+
+            function performSearch(query) {
+                // Restore original content before a new search
+                mainContent.innerHTML = originalContent;
+                
+                // Re-add event listeners to restored content
+                document.querySelectorAll('a[href^="#program-"]').forEach(link => {
+                     link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        history.pushState(null, null, targetId);
+                        showSection(targetId);
+                        window.scrollTo({ top: document.querySelector(targetId).offsetTop - 20, behavior: 'smooth' });
+                    });
+                });
+
+                if (query === '') {
+                    showSection(location.hash || '#home');
+                    return;
+                }
+
+                // Show all sections to search through them
+                contentSections.forEach(section => section.classList.add('active'));
+
+                const regex = new RegExp(query, 'gi');
+                let matchFound = false;
+
+                contentSections.forEach(section => {
+                    const textNodes = getTextNodes(section);
+                    let sectionHasMatch = false;
+                    textNodes.forEach(node => {
+                        const matches = node.nodeValue.match(regex);
+                        if (matches) {
+                            matchFound = true;
+                            sectionHasMatch = true;
+                            const newNode = document.createElement('span');
+                            newNode.innerHTML = node.nodeValue.replace(regex, `<span class="search-highlight">$&</span>`);
+                            node.parentNode.replaceChild(newNode, node);
+                        }
+                    });
+                     // Hide sections that don't have a match
+                    if (!sectionHasMatch) {
+                        section.classList.remove('active');
+                    }
+                });
+
+                if (!matchFound) {
+                    mainContent.innerHTML = `<div class="bg-white p-8 rounded-xl shadow-md"><p class="text-center text-gray-600">「${escapeHTML(query)}」に一致する情報は見つかりませんでした。</p></div>`;
+                }
+            }
+
+            function getTextNodes(node) {
+                let textNodes = [];
+                if (node.nodeType === 3) { // Node.TEXT_NODE
+                    if (node.nodeValue.trim() !== '') {
+                        textNodes.push(node);
+                    }
+                } else {
+                    for (let i = 0, len = node.childNodes.length; i < len; ++i) {
+                        textNodes = textNodes.concat(getTextNodes(node.childNodes[i]));
+                    }
+                }
+                return textNodes;
+            }
+            
+            function escapeHTML(str) {
+                const p = document.createElement("p");
+                p.appendChild(document.createTextNode(str));
+                return p.innerHTML;
+            }
+
+        });
+    </script>
+</body>
+</html>
