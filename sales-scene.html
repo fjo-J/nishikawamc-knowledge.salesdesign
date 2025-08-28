@@ -70,6 +70,14 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        /* Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #2563eb;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #2563eb;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -115,117 +123,7 @@
             </aside>
 
             <main id="main-content" class="lg:col-span-3 space-y-8">
-                <section id="home" class="content-section active bg-white p-8 rounded-xl shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">ようこそ</h2>
-                    <p class="mb-4">このナレッジベースは、営業担当者が助成金・補助金に関する情報を迅速にキャッチアップし、お客様に的確な提案を行うための社内ツールです。</p>
-                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
-                        <h3 class="font-bold text-blue-800">ツールの目的</h3>
-                        <ul class="list-disc list-inside mt-2 text-blue-700">
-                            <li>社内の知識レベルを統一し、誰でもフロント対応ができる状態にする。</li>
-                            <li>複雑なサービス（ポイント利用、助成金組み合わせ）の理解を促進する。</li>
-                            <li>顧客からの質問に迅速かつ正確に回答する。</li>
-                        </ul>
-                    </div>
-                     <h3 class="text-xl font-bold mt-6 mb-3">よくある質問 (FAQ)</h3>
-                    <div class="space-y-2">
-                        <p><a href="#program-career-up" class="sub-nav-link text-blue-600 hover:underline">Q: キャリアアップ助成金が減額されるって本当？どうすれば回避できる？</a></p>
-                        <p><a href="#program-point-back" class="sub-nav-link text-blue-600 hover:underline">Q: 研修を受けるとポイントが貰える仕組みについて教えて。</a></p>
-                        <p><a href="#grant-search" class="main-nav-link text-blue-600 hover:underline">Q: 「助成金」と「補助金」の違いは？</a></p>
-                        <p><a href="#point-partners" class="main-nav-link text-blue-600 hover:underline">Q: 貯まったポイントはどこで使えるの？</a></p>
-                    </div>
-                </section>
-
-                <section id="service-menu" class="content-section bg-white p-8 rounded-xl shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">Service Menu</h2>
-                    <div class="border-b border-gray-200">
-                        <nav id="program-tabs" class="-mb-px flex flex-wrap" aria-label="Tabs">
-                            <button data-tab-target="#program-point-back" class="program-tab whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm active">
-                                人材開発支援助成金 / リスキリングスキーム
-                            </button>
-                            <button data-tab-target="#program-career-up" class="program-tab whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm">
-                                キャリアアップ助成金 / 減額回避プログラム
-                            </button>
-                            <button data-tab-target="#program-human-capital" class="program-tab whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm">
-                                人的資本経営 コンサルティング
-                            </button>
-                            <button data-tab-target="#program-keiei-kakushin" class="program-tab whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm">
-                                経営革新計画 策定支援
-                            </button>
-                        </nav>
-                    </div>
-                    <div class="mt-6">
-                        <div id="program-point-back" class="program-tab-panel active">
-                            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg mb-6">
-                                <h3 class="font-bold text-blue-800">お客様への伝え方ポイント</h3>
-                                <ul class="list-disc list-inside mt-2 text-blue-700 text-sm">
-                                    <li>国の助成金を活用するので、**実質12万円の負担**で、従業員に**60万円分**のDX・GX研修を提供できます。</li>
-                                    <li>さらに、実質負担額を上回る**24万円分のポイント**が付与されるので、**差し引き12万円のプラス**になります。</li>
-                                    <li>このポイントを使って、広告やコンサルなど、**事業成長に必要なサービスを実質無料で導入**できます。</li>
-                                </ul>
-                            </div>
-                            <p class="mb-4">人材開発支援助成金を活用し、従業員のリスキリングと経営投資を同時に実現する当社独自のプログラムです。</p>
-                        </div>
-                        <div id="program-career-up" class="program-tab-panel">
-                             <p class="mb-4">2025年度からのキャリアアップ助成金（正社員化コース）の制度変更による支給額減額を、当社の研修プログラムと組み合わせることで回避します。</p>
-                        </div>
-                        <div id="program-human-capital" class="program-tab-panel">
-                             <p class="mb-4">人材を「資本」として捉え、その価値を最大限に引き出すことで、中長期的な企業価値向上につなげる経営のあり方（人的資本経営）をコンサルティングします。</p>
-                        </div>
-                        <div id="program-keiei-kakushin" class="program-tab-panel">
-                             <p class="mb-4">既存事業の強みを活かした新規事業や新サービス開発を後押しする「経営革新計画」の策定を支援します。</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="grant-search" class="content-section bg-white p-8 rounded-xl shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">助成金・補助金 検索</h2>
-                    <p class="mb-6 text-sm text-gray-600">AIアシスタントに質問するか、下のカードから制度を選択してください。</p>
-
-                    <!-- AI Search Interface -->
-                    <div class="bg-gray-100 p-4 rounded-lg mb-8">
-                        <h3 class="font-bold text-lg mb-2 flex items-center">
-                            <svg class="w-6 h-6 mr-2 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 00-2.25-2.25H7.5A2.25 2.25 0 005.25 7.5v9.75a2.25 2.25 0 002.25 2.25z" /></svg>
-                            AIアシスタント (β版)
-                        </h3>
-                        <div id="ai-chat-history" class="h-48 overflow-y-auto bg-white p-3 rounded-md mb-2 border">
-                            <div class="ai-chat-bubble self-start bg-gray-200 text-gray-800 p-3 rounded-lg rounded-bl-none">
-                                <p class="text-sm">こんにちは！助成金・補助金について何でも聞いてください。<br>例：「ものづくり補助金について教えて」</p>
-                            </div>
-                        </div>
-                        <div class="flex">
-                            <input type="text" id="ai-search-input" placeholder="質問を入力..." class="flex-grow p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <button id="ai-search-btn" class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition">質問する</button>
-                        </div>
-                    </div>
-
-                    <!-- Grant/Subsidy Cards -->
-                    <div id="grant-card-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Cards will be dynamically inserted here by JS -->
-                    </div>
-                </section>
-                
-                <section id="point-partners" class="content-section bg-white p-8 rounded-xl shadow-md">
-                     <h2 class="text-2xl font-bold mb-4">ポイント利用先一覧</h2>
-                    <p class="mb-6">リスキリングスキームで獲得したポイントは、以下の提携サービスでご利用いただけます。各カテゴリをクリックすると詳細が表示されます。</p>
-                    <div id="partner-category-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Partner cards will be injected by JS -->
-                    </div>
-                </section>
-                
-                <section id="service-summary" class="content-section bg-white p-8 rounded-xl shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">当社事業概要</h2>
-                    <p class="mb-4">西河マネジメントセンターは、コンサルティング、研修、申請代行をワンストップで提供し、事業同士が連携することで顧客の事業成長を最大化します。</p>
-                </section>
-
-                <section id="schedule-generator" class="content-section bg-white p-8 rounded-xl shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">スケジュールジェネレーター</h2>
-                    <p class="mb-6">プログラムとヒアリング日を選択すると、お客様にご提示するスケジュールの目安が自動生成されます。</p>
-                </section>
-
-                <section id="how-to-add" class="content-section bg-white p-8 rounded-xl shadow-md">
-                    <h2 class="text-2xl font-bold mb-4">ナレッジの追加方法</h2>
-                    <p class="mb-4">このツールは単一のHTMLファイルで構成されています。新しい情報を追加・編集する場合は、このファイルを直接編集してください。</p>
-                </section>
+                <!-- Content is managed by JS -->
             </main>
         </div>
     </div>
@@ -252,315 +150,393 @@
 
 
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // --- 1. All Functions Definitions ---
-        
-        // --- Navigation & Display ---
-        function showSection(hash, activateTab = null) {
-            document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
-            const targetSection = document.querySelector(hash);
-            if (targetSection) {
-                targetSection.classList.add('active');
-                if (activateTab) {
-                    const tabButton = document.querySelector(`button[data-tab-target="${activateTab}"]`);
-                    if (tabButton) tabButton.click();
-                }
-            } else {
-                document.querySelector('#home').classList.add('active');
-            }
-        }
-
-        function handleLinkClick(e, isSubNav = false) {
-            e.preventDefault();
-            if (searchInput.value.trim() !== '') {
-                searchInput.value = '';
-                attachAllEventListeners(); 
-            }
-            const targetId = e.currentTarget.getAttribute('href');
-            let mainSectionId = isSubNav ? '#service-menu' : targetId;
-            let tabId = isSubNav ? targetId : null;
-            history.pushState({ section: mainSectionId, tab: tabId }, null, mainSectionId);
-            showSection(mainSectionId, tabId);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // --- Modals ---
-        function openPartnerModal(modalId) {
-            const data = partnerServiceData[modalId];
-            const partnerModal = document.getElementById('partner-modal');
-            const modalBody = document.getElementById('modal-body');
-            const modalContent = partnerModal.querySelector('.modal-content');
-            if (!data || !partnerModal) return;
-
-            modalBody.innerHTML = `<h2 class="text-2xl font-bold mb-4">${data.title}</h2><ul class="list-disc list-inside space-y-2">${data.services.map(service => `<li class="text-gray-700">${service}</li>`).join('')}</ul><p class="mt-6 text-sm text-gray-500">※詳細なサービス内容については、後日追加予定です。</p>`;
-            
-            partnerModal.classList.remove('hidden');
-            document.body.classList.add('overflow-hidden');
-            setTimeout(() => {
-                partnerModal.classList.remove('opacity-0');
-                modalContent.classList.remove('scale-95');
-            }, 10);
-        }
-
-        function closePartnerModal() {
-            const partnerModal = document.getElementById('partner-modal');
-            const modalContent = partnerModal.querySelector('.modal-content');
-            if (!partnerModal) return;
-            partnerModal.classList.add('opacity-0');
-            modalContent.classList.add('scale-95');
-            setTimeout(() => {
-                partnerModal.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden');
-            }, 300);
-        }
-
-        function openSimulatorModal() {
-            const modal = document.getElementById('simulator-modal');
-            const modalBody = document.getElementById('simulator-modal-body');
-            const modalContent = modal.querySelector('.modal-content');
-
-            modalBody.innerHTML = `<h2 class="text-2xl font-bold mb-2">業務改善助成金 シミュレーター</h2><p class="mb-6 text-sm text-gray-600">お客様の状況をヒアリングしながら入力することで、対象になるか、いくら受給できるかの目安が分かります。</p><div class="space-y-4" id="simulator-content"></div>`;
-            
-            modal.classList.remove('hidden');
-            document.body.classList.add('overflow-hidden');
-            setupGyomukaizenSimulator();
-
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalContent.classList.remove('scale-95');
-            }, 10);
-        }
-
-        function closeSimulatorModal() {
-            const modal = document.getElementById('simulator-modal');
-            const modalContent = modal.querySelector('.modal-content');
-            modal.classList.add('opacity-0');
-            modalContent.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden');
-            }, 300);
-        }
-
-        // --- Search ---
-        function performSearch(query) {
-            attachAllEventListeners();
-            if (query === '') {
-                const currentHash = window.location.hash;
-                if (currentHash.startsWith('#program-')) showSection('#service-menu', currentHash);
-                else showSection(currentHash || '#home');
-                return;
-            }
-            document.querySelectorAll('.content-section').forEach(section => section.classList.add('active'));
-            const regex = new RegExp(query, 'gi');
-            let matchFound = false;
-            document.querySelectorAll('.content-section, .program-tab-panel').forEach(element => {
-                const textNodes = getTextNodes(element);
-                textNodes.forEach(node => {
-                    if (node.nodeValue.match(regex)) {
-                        matchFound = true;
-                        const newNode = document.createElement('span');
-                        newNode.innerHTML = node.nodeValue.replace(regex, `<span class="search-highlight">$&</span>`);
-                        node.parentNode.replaceChild(newNode, node);
-                    }
-                });
-            });
-            document.querySelectorAll('.content-section').forEach(section => { if (!section.querySelector('.search-highlight')) section.classList.remove('active'); });
-            if (!matchFound) mainContent.innerHTML = `<div class="bg-white p-8 rounded-xl shadow-md"><p class="text-center text-gray-600">「${escapeHTML(query)}」に一致する情報は見つかりませんでした。</p></div>`;
-        }
-        function getTextNodes(node) { let textNodes = []; if (node.nodeType === 3) { if (node.nodeValue.trim() !== '') textNodes.push(node); } else { for (let i = 0, len = node.childNodes.length; i < len; ++i) { textNodes = textNodes.concat(getTextNodes(node.childNodes[i])); } } return textNodes; }
-        function escapeHTML(str) { const p = document.createElement("p"); p.appendChild(document.createTextNode(str)); return p.innerHTML; }
-
-        // --- Grant Search Section ---
-        function initializeGrantSearch() {
-            const container = document.getElementById('grant-card-container');
-            if (!container) return;
-            container.innerHTML = '';
-            grantsData.forEach(grant => {
-                const card = document.createElement('div');
-                card.className = 'grant-card p-4 bg-white rounded-lg border cursor-pointer';
-                card.dataset.grantId = grant.id;
-                const typeLabel = grant.type === 'joseikin' ? '<span class="text-xs font-bold bg-green-100 text-green-800 px-2 py-1 rounded-full">助成金</span>' : '<span class="text-xs font-bold bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">補助金</span>';
-                card.innerHTML = `<div class="flex justify-between items-start"><h3 class="font-bold text-lg text-gray-800 pr-2">${grant.title}</h3>${typeLabel}</div><p class="text-sm text-gray-600 mt-2">${grant.purpose}</p>`;
-                container.appendChild(card);
-            });
-            container.querySelectorAll('.grant-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const grantId = card.dataset.grantId;
-                    if (grantId === 'gyomukaizen-joseikin') {
-                        openSimulatorModal();
-                    } else {
-                        alert(`「${grantsData.find(g => g.id === grantId).title}」の詳細表示機能は現在準備中です。`);
-                    }
-                });
-            });
-        }
-
-        function setupAiSearch() {
-            const aiInput = document.getElementById('ai-search-input');
-            const aiBtn = document.getElementById('ai-search-btn');
-            const aiHistory = document.getElementById('ai-chat-history');
-            if(!aiInput || !aiBtn || !aiHistory) return;
-
-            const handleSearch = () => {
-                const query = aiInput.value.trim();
-                if (!query) return;
-                const userBubble = document.createElement('div');
-                userBubble.className = 'ai-chat-bubble self-end bg-blue-500 text-white p-3 rounded-lg rounded-br-none mt-2';
-                userBubble.innerHTML = `<p class="text-sm">${escapeHTML(query)}</p>`;
-                aiHistory.appendChild(userBubble);
-                aiInput.value = '';
-                aiHistory.scrollTop = aiHistory.scrollHeight;
-                setTimeout(() => {
-                    let response = '申し訳ありません、その情報は見つかりませんでした。';
-                    const lowerQuery = query.toLowerCase();
-                    const foundGrant = grantsData.find(g => g.title.toLowerCase().includes(lowerQuery) || g.keywords.toLowerCase().includes(lowerQuery));
-                    if (foundGrant) {
-                        response = `<strong>${foundGrant.title}</strong>ですね。<br><strong>目的:</strong> ${foundGrant.purpose}<br><strong>対象:</strong> ${foundGrant.target}`;
-                    }
-                    const aiBubble = document.createElement('div');
-                    aiBubble.className = 'ai-chat-bubble self-start bg-gray-200 text-gray-800 p-3 rounded-lg rounded-bl-none mt-2';
-                    aiBubble.innerHTML = `<p class="text-sm">${response}</p>`;
-                    aiHistory.appendChild(aiBubble);
-                    aiHistory.scrollTop = aiHistory.scrollHeight;
-                }, 500);
-            };
-            aiBtn.addEventListener('click', handleSearch);
-            aiInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSearch(); });
-        }
-        
-        // --- Simulator ---
-        function setupGyomukaizenSimulator() {
-            const container = document.getElementById('simulator-content');
-            if (!container) return;
-            container.innerHTML = `<div id="sim-step-1" class="sim-step bg-gray-50 p-4 rounded-lg border"></div><div id="sim-step-2" class="sim-step bg-gray-50 p-4 rounded-lg border hidden"></div><div id="sim-step-3" class="sim-step bg-gray-50 p-4 rounded-lg border hidden"></div><div id="sim-step-4" class="sim-step bg-gray-50 p-4 rounded-lg border hidden"></div><div id="sim-result" class="mt-6"></div>`;
-            document.getElementById('sim-step-1').innerHTML = `<label for="sim-prefecture" class="block text-sm font-medium text-gray-700 mb-1">1. 事業所の所在地（都道府県）を選択してください</label><select id="sim-prefecture" class="w-full p-2 border border-gray-300 rounded-md"><option value="">選択してください</option></select><div id="min-wage-info" class="mt-2 text-sm text-gray-600"></div>`;
-            document.getElementById('sim-step-2').innerHTML = `<label for="sim-employees" class="block text-sm font-medium text-gray-700 mb-1">2. 事業所の従業員数を入力してください</label><input type="number" id="sim-employees" placeholder="例: 30" class="w-full p-2 border border-gray-300 rounded-md">`;
-            document.getElementById('sim-step-3').innerHTML = `<label for="sim-current-wage" class="block text-sm font-medium text-gray-700 mb-1">3. 事業場内最低賃金（時給）を入力してください</label><input type="number" id="sim-current-wage" placeholder="例: 1000" class="w-full p-2 border border-gray-300 rounded-md"><div id="wage-diff-info" class="mt-2 text-sm"></div>`;
-            document.getElementById('sim-step-4').innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div><label for="sim-investment-cost" class="block text-sm font-medium text-gray-700 mb-1">4. 設備投資などの予定金額（税抜）</label><input type="number" id="sim-investment-cost" placeholder="例: 1000000" class="w-full p-2 border border-gray-300 rounded-md"></div><div><label for="sim-wage-increase" class="block text-sm font-medium text-gray-700 mb-1">5. 引き上げる賃金の額</label><select id="sim-wage-increase" class="w-full p-2 border border-gray-300 rounded-md"><option value="30">30円コース</option><option value="45">45円コース</option><option value="60">60円コース</option><option value="90">90円コース</option></select></div><div><label for="sim-target-employees" class="block text-sm font-medium text-gray-700 mb-1">6. 賃金を引き上げる対象人数</label><input type="number" id="sim-target-employees" placeholder="例: 3" class="w-full p-2 border border-gray-300 rounded-md"></div><div><label for="sim-investment-type" class="block text-sm font-medium text-gray-700 mb-1">7. 投資の目的</label><select id="sim-investment-type" class="w-full p-2 border border-gray-300 rounded-md"><option value="">選択してください</option><option>機器・設備の導入</option><option>経営コンサルティング</option><option>その他（システム化など）</option></select></div></div>`;
-            
-            const prefectureSelect = document.getElementById('sim-prefecture');
-            Object.keys(minWages).forEach(pref => { const option = document.createElement('option'); option.value = pref; option.textContent = pref; prefectureSelect.appendChild(option); });
-
-            const steps = { step2: document.getElementById('sim-step-2'), step3: document.getElementById('sim-step-3'), step4: document.getElementById('sim-step-4') };
-            const inputs = { prefecture: document.getElementById('sim-prefecture'), employees: document.getElementById('sim-employees'), currentWage: document.getElementById('sim-current-wage'), investmentCost: document.getElementById('sim-investment-cost'), wageIncrease: document.getElementById('sim-wage-increase'), targetEmployees: document.getElementById('sim-target-employees'), investmentType: document.getElementById('sim-investment-type') };
-            const infoDivs = { minWage: document.getElementById('min-wage-info'), wageDiff: document.getElementById('wage-diff-info'), result: document.getElementById('sim-result') };
-
-            function runSimulation() {
-                infoDivs.result.innerHTML = '';
-                const pref = inputs.prefecture.value;
-                if (!pref) { Object.values(steps).forEach(s => s.classList.add('hidden')); return; }
-                const regionalMinWage = minWages[pref];
-                infoDivs.minWage.innerHTML = `<strong>${pref}</strong>の地域別最低賃金: <strong>${regionalMinWage}円</strong><br><small class="text-gray-500">※令和5年10月発効データ。最新情報と異なる場合があります。</small>`;
-                steps.step2.classList.remove('hidden');
-                const employeeCount = parseInt(inputs.employees.value, 10);
-                if (isNaN(employeeCount)) { steps.step3.classList.add('hidden'); steps.step4.classList.add('hidden'); infoDivs.wageDiff.innerHTML = ''; return; }
-                if (employeeCount > 100) { infoDivs.wageDiff.innerHTML = `<p class="text-red-600 font-bold">対象外です。従業員数が100名以下の事業者が対象です。</p>`; steps.step3.classList.add('hidden'); steps.step4.classList.add('hidden'); return; }
-                steps.step3.classList.remove('hidden');
-                const currentWage = parseInt(inputs.currentWage.value, 10);
-                if (isNaN(currentWage)) { steps.step4.classList.add('hidden'); infoDivs.wageDiff.innerHTML = ''; return; }
-                const diff = currentWage - regionalMinWage;
-                infoDivs.wageDiff.innerHTML = `地域別最低賃金との差額: <strong class="${diff > 50 || diff < 0 ? 'text-red-600' : 'text-green-600'}">${diff}円</strong>`;
-                if (diff > 50) { infoDivs.wageDiff.innerHTML += `<p class="text-red-600 font-bold mt-1">対象外です。差額が50円以内の事業者が対象です。</p>`; steps.step4.classList.add('hidden'); return; }
-                if (diff < 0) { infoDivs.wageDiff.innerHTML += `<p class="text-red-600 font-bold mt-1">最低賃金を下回っています。労務管理の見直しが必要です。</p>`; steps.step4.classList.add('hidden'); return; }
-                steps.step4.classList.remove('hidden');
-                const investment = parseInt(inputs.investmentCost.value, 10) || 0, increaseCourse = inputs.wageIncrease.value, targetCount = parseInt(inputs.targetEmployees.value, 10) || 0;
-                if (investment <= 0 || targetCount <= 0 || !inputs.investmentType.value) { infoDivs.result.innerHTML = ''; return; }
-                const grantRate = currentWage < 1000 ? 4 / 5 : 3 / 4;
-                const calculatedAmount = investment * grantRate;
-                let employeeGroup;
-                if (targetCount === 1) employeeGroup = '1'; else if (targetCount <= 3) employeeGroup = '2-3'; else if (targetCount <= 6) employeeGroup = '4-6'; else if (targetCount <= 9) employeeGroup = '7-9'; else employeeGroup = '10+';
-                const upperLimit = (gyomukaizenCourses[increaseCourse][employeeGroup] || 0) * 10000;
-                const finalAmount = Math.min(calculatedAmount, upperLimit);
-                infoDivs.result.innerHTML = `<div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg mt-6"><h3 class="text-xl font-bold text-blue-800">シミュレーション結果</h3><p class="mt-2">お客様は業務改善助成金の<strong class="text-green-600">対象となる可能性が高いです。</strong></p><div class="mt-4 bg-white p-4 rounded-lg"><p class="text-sm text-gray-600">助成上限額</p><p class="text-2xl font-bold text-gray-800">${upperLimit.toLocaleString()}円</p><p class="text-xs text-gray-500">(${increaseCourse}円コース / ${targetCount}人)</p></div><div class="mt-2 bg-white p-4 rounded-lg"><p class="text-sm text-gray-600">助成率適用後の金額</p><p class="text-2xl font-bold text-gray-800">${Math.floor(calculatedAmount).toLocaleString()}円</p><p class="text-xs text-gray-500">(${investment.toLocaleString()}円 × ${grantRate === 0.8 ? '4/5' : '3/4'})</p></div><div class="mt-4 pt-4 border-t"><p class="text-lg font-bold">受給可能額（目安）</p><p class="text-4xl font-bold text-blue-600">${Math.floor(finalAmount).toLocaleString()}円</p></div></div><div id="sim-schedule-infographic" class="mt-6"></div>`;
-                generateScheduleForSim();
-            }
-            function generateScheduleForSim() {
-                const resultDiv = document.getElementById('sim-schedule-infographic');
-                if (!resultDiv) return;
-                const hearingDate = new Date(), formatDate = (d) => `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}`, addMonths = (d, m) => { const newD = new Date(d); newD.setMonth(newD.getMonth() + m); return newD; };
-                const events = [{ label: '計画申請', date: hearingDate }, { label: '交付決定', date: addMonths(hearingDate, 1) }, { label: '事業実施', date: addMonths(hearingDate, 4) }, { label: '支給申請', date: addMonths(hearingDate, 5) }, { label: '助成金受給', date: addMonths(hearingDate, 8) }];
-                resultDiv.innerHTML = `<h3 class="text-lg font-bold mb-3">申請から受給までの流れ（目安）</h3><div class="flex items-center justify-between text-center text-xs text-gray-600">${events.map((e, i) => `<div class="flex-1"><div class="w-4 h-4 mx-auto rounded-full ${i === events.length - 1 ? 'bg-green-500' : 'bg-blue-500'}"></div><p class="mt-2 font-bold">${e.label}</p><p>${formatDate(e.date)}頃</p></div>${i < events.length - 1 ? '<div class="flex-1 h-0.5 bg-gray-300"></div>' : ''}`).join('')}</div>`;
-            }
-            Object.values(inputs).forEach(input => { input.addEventListener('input', runSimulation); input.addEventListener('change', runSimulation); });
-        }
-        
-        // --- Main Attachment Function ---
-        function attachAllEventListeners() {
-            Object.keys(originalSections).forEach(id => {
-                const section = document.getElementById(id);
-                if(section && originalSections[id]) section.innerHTML = originalSections[id];
-            });
-            document.querySelectorAll('.main-nav-link').forEach(link => link.addEventListener('click', (e) => handleLinkClick(e, false)));
-            document.querySelectorAll('.sub-nav-link').forEach(link => link.addEventListener('click', (e) => handleLinkClick(e, true)));
-            document.querySelectorAll('.program-tab').forEach(tab => {
-                tab.addEventListener('click', () => {
-                    document.querySelectorAll('.program-tab').forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    const target = document.querySelector(tab.dataset.tabTarget);
-                    document.querySelectorAll('.program-tab-panel').forEach(panel => panel.classList.remove('active'));
-                    if (target) target.classList.add('active');
-                });
-            });
-            document.querySelectorAll('.partner-card').forEach(card => card.addEventListener('click', () => openPartnerModal(card.dataset.modalTarget)));
-            document.querySelector('#partner-modal .modal-close-btn')?.addEventListener('click', closePartnerModal);
-            document.getElementById('partner-modal')?.addEventListener('click', (e) => { if (e.target.id === 'partner-modal') closePartnerModal(); });
-            document.getElementById('generate-schedule-btn')?.addEventListener('click', generateSchedule);
-            document.getElementById('toc-toggle')?.addEventListener('click', (e) => {
-                const tocNav = document.getElementById('toc');
-                tocNav.classList.toggle('hidden');
-                e.target.textContent = tocNav.classList.contains('hidden') ? '[表示]' : '[非表示]';
-            });
-            initializeGrantSearch();
-            setupAiSearch();
-            document.getElementById('simulator-close-btn')?.addEventListener('click', closeSimulatorModal);
-            document.getElementById('simulator-modal')?.addEventListener('click', (e) => { if (e.target.id === 'simulator-modal') closeSimulatorModal(); });
-        }
-
-        // --- 2. Database and Variables ---
+        // --- 1. Database and Variables (Constants) ---
         const grantsData = [
-            { id: 'gyomukaizen-joseikin', type: 'joseikin', title: '業務改善助成金', purpose: '事業場内で最も低い賃金（事業場内最低賃金）を引き上げ、設備投資などを行った場合に、その費用の一部を助成する制度。', target: '事業場内最低賃金と地域別最低賃金の差額が50円以内で、事業場規模100人以下の中小企業・小規模事業者。', keywords: '最低賃金引上げ, 設備投資, 生産性向上, 賃上げ' },
-            { id: 'it-hojokin', type: 'hojokin', title: 'IT導入補助金', purpose: '中小企業・小規模事業者の生産性向上を支援するため、ITツール（ソフトウェア、サービス等）の導入費用の一部を補助する制度。', target: '労働生産性の向上を目指す中小企業・小規模事業者。飲食、宿泊、製造、小売など幅広い業種が対象。', keywords: 'DX化, デジタル化, ソフトウェア, クラウド利用, インボイス制度' },
-            { id: 'monodukuri-hojokin', type: 'hojokin', title: 'ものづくり・商業・サービス生産性向上促進補助金（ものづくり補助金）', purpose: '革新的な製品・サービスの開発や生産プロセスの改善に必要な設備投資等を支援する制度。', target: '新製品・新サービス開発や、生産性向上に取り組む中小企業・小規模事業者。', keywords: '設備投資, 試作品開発, 新サービス, 生産性向上' },
-            { id: 'jigyo-saikochiku', type: 'hojokin', title: '事業再構築補助金', purpose: 'ポストコロナ・ウィズコロナ時代の経済社会の変化に対応するため、新分野展開、業態転換、事業・業種転換等の思い切った事業再構築に挑戦する企業を支援する制度。', target: '売上高が減少しており、認定経営革新等支援機関と事業計画を策定する中小企業等。', keywords: '新分野展開, 業態転換, 大規模投資, V字回復' },
-            { id: 'shokibo-jizokuka', type: 'hojokin', title: '小規模事業者持続化補助金', purpose: '小規模事業者が経営計画を策定して取り組む販路開拓等の取組を支援する制度。', target: '常時使用する従業員数が少ない小規模事業者（商業・サービス業は5人以下、その他は20人以下など）。', keywords: '販路開拓, Webサイト作成, チラシ作成, 店舗改装' },
             { id: 'jinzai-kaihatsu', type: 'joseikin', title: '人材開発支援助成金', purpose: '労働者の職業能力開発を促進するため、事業主が労働者に対して訓練等を実施した場合に、訓練経費や訓練期間中の賃金の一部等を助成する制度。', target: '雇用保険の適用事業主。', keywords: '人材育成, リスキリング, 職業訓練, OJT, OFF-JT' },
-            { id: 'career-up', type: 'joseikin', title: 'キャリアアップ助成金', purpose: '有期雇用労働者、短時間労働者、派遣労働者といった、いわゆる非正規雇用の労働者の企業内でのキャリアアップを促進するため、正社員化、処遇改善の取組を実施した事業主に対して助成する制度。', target: '非正規雇用労働者のキャリアアップに取り組む事業主。', keywords: '正社員化, 非正規雇用, 処遇改善, 人材確保' },
+            { id: 'gyomukaizen-joseikin', type: 'joseikin', title: '業務改善助成金', purpose: '事業場内で最も低い賃金（事業場内最低賃金）を引き上げ、設備投資などを行った場合に、その費用の一部を助成する制度。', target: '事業場内最低賃金と地域別最低賃金の差額が50円以内で、事業場規模100人以下の中小企業・小規模事業者。', keywords: '最低賃金引上げ, 設備投資, 生産性向上, 賃上げ' },
+            { id: 'career-up', type: 'joseikin', title: 'キャリアアップ助成金', purpose: '非正規雇用の労働者の企業内でのキャリアアップを促進するため、正社員化等の取組を実施した事業主に対して助成する制度。', target: '非正規雇用労働者のキャリアアップに取り組む事業主。', keywords: '正社員化, 非正規雇用, 処遇改善, 人材確保' },
+            { id: 'it-hojokin', type: 'hojokin', title: 'IT導入補助金', purpose: '中小企業・小規模事業者の生産性向上を支援するため、ITツール（ソフトウェア、サービス等）の導入費用の一部を補助する制度。', target: '労働生産性の向上を目指す中小企業・小規模事業者。飲食、宿泊、製造、小売など幅広い業種が対象。', keywords: 'DX化, デジタル化, ソフトウェア, クラウド利用, インボイス制度' },
+            { id: 'monodukuri-hojokin', type: 'hojokin', title: 'ものづくり補助金', purpose: '革新的な製品・サービスの開発や生産プロセスの改善に必要な設備投資等を支援する制度。', target: '新製品・新サービス開発や、生産性向上に取り組む中小企業・小規模事業者。', keywords: '設備投資, 試作品開発, 新サービス, 生産性向上' },
         ];
         const partnerServiceData = { 'modal-marketing': { title: 'マーケティング & 営業支援', services: ['Sales Marker', 'Recruit Marker', 'デジタル広告', '営業代行各商材'] }, 'modal-creative': { title: 'クリエイティブ & 制作', services: ['コンテンツ制作', 'メールマーケティング'] }, 'modal-consulting': { title: '経営コンサルティング', services: ['飲食店コンサルティング', '税理サービス'] }, 'modal-lifestyle': { title: 'ライフスタイル & その他', services: ['旅行代理店', '最先端がん診断', '内装工事関連', '投資対象商材'] } };
-        const requiredDocumentsData = { 'career-up': { title: 'キャリアアップ助成金', customer: ['雇用契約書', '労働者名簿', '賃金台帳', '出勤簿（タイムカード）'], nmc: ['就業規則（正社員転換制度の規定）', 'キャリアアップ計画届', '支給申請書'] }, 'point-back': { title: '人材開発支援助成金', customer: ['訓練経費が確認できる領収書・請求書', '訓練中の賃金台帳・出勤簿', '訓練カリキュラム・内容がわかる資料'], nmc: ['訓練計画届', '支給申請書'] }, 'it-hojokin': { title: 'IT導入補助金', customer: ['履歴事項全部証明書（3ヶ月以内）', '法人税の納税証明書（その1またはその2）'], nmc: ['事業計画の策定支援', 'ITツールの代理申請'] }, 'monodukuri-hojokin': { title: 'ものづくり補助金', customer: ['直近2年分の決算書（貸借対照表、損益計算書など）', '従業員数の確認書類', '賃上げ計画の表明書'], nmc: ['事業計画書の策定支援', '申請マイページの作成支援'] }, 'gyomukaizen-joseikin': { title: '業務改善助成金', customer: ['事業場内最低賃金がわかる書類（賃金台帳など）', '設備投資の見積書・相見積書', '生産性向上のための計画書'], nmc: ['事業実施計画書の作成支援', '支給申請書'] } };
         const minWages = {"北海道": 960, "青森": 898, "岩手": 893, "宮城": 923, "秋田": 897, "山形": 900, "福島": 900, "茨城": 953, "栃木": 954, "群馬": 935, "埼玉": 1028, "千葉": 1026, "東京": 1113, "神奈川": 1112, "新潟": 931, "富山": 948, "石川": 933, "福井": 931, "山梨": 938, "長野": 948, "岐阜": 950, "静岡": 984, "愛知": 1027, "三重": 973, "滋賀": 967, "京都": 1008, "大阪": 1064, "兵庫": 1001, "奈良": 936, "和歌山": 929, "鳥取": 900, "島根": 904, "岡山": 932, "広島": 970, "山口": 928, "徳島": 896, "香川": 918, "愛媛": 897, "高知": 897, "福岡": 941, "佐賀": 900, "長崎": 898, "熊本": 898, "大分": 899, "宮崎": 897, "鹿児島": 897, "沖縄": 896};
         const gyomukaizenCourses = {'30': {'1': 30, '2-3': 50, '4-6': 70, '7-9': 100, '10+': 120},'45': {'1': 45, '2-3': 70, '4-6': 100, '7-9': 150, '10+': 180},'60': {'1': 60, '2-3': 90, '4-6': 150, '7-9': 230, '10+': 300},'90': {'1': 90, '2-3': 150, '4-6': 270, '7-9': 450, '10+': 600}};
-        const mainContent = document.getElementById('main-content');
-        const searchInput = document.getElementById('searchInput');
-        let originalSections = {};
-        let searchTimeout;
 
-        // --- 3. Initial Data Population ---
-        document.querySelectorAll('.content-section').forEach(el => {
-            originalSections[el.id] = el.innerHTML;
+        const originalSectionsHTML = {
+            home: `<h2 class="text-2xl font-bold mb-4">ようこそ</h2><p class="mb-4">このナレッジベースは、営業担当者が助成金・補助金に関する情報を迅速にキャッチアップし、お客様に的確な提案を行うための社内ツールです。</p><div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg"><h3 class="font-bold text-blue-800">ツールの目的</h3><ul class="list-disc list-inside mt-2 text-blue-700"><li>社内の知識レベルを統一し、誰でもフロント対応ができる状態にする。</li><li>複雑なサービス（ポイント利用、助成金組み合わせ）の理解を促進する。</li><li>顧客からの質問に迅速かつ正確に回答する。</li></ul></div><h3 class="text-xl font-bold mt-6 mb-3">よくある質問 (FAQ)</h3><div class="space-y-2"><p><a href="#program-career-up" class="sub-nav-link text-blue-600 hover:underline">Q: キャリアアップ助成金が減額されるって本当？どうすれば回避できる？</a></p><p><a href="#program-point-back" class="sub-nav-link text-blue-600 hover:underline">Q: 研修を受けるとポイントが貰える仕組みについて教えて。</a></p><p><a href="#grant-search" class="main-nav-link text-blue-600 hover:underline">Q: 「助成金」と「補助金」の違いは？</a></p><p><a href="#point-partners" class="main-nav-link text-blue-600 hover:underline">Q: 貯まったポイントはどこで使えるの？</a></p></div>`,
+            'service-menu': `<h2 class="text-2xl font-bold mb-4">Service Menu</h2>
+                <div class="border-b border-gray-200">
+                    <nav id="program-tabs" class="-mb-px flex flex-wrap" aria-label="Tabs">
+                        <button data-tab-target="#program-point-back" class="program-tab whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm active">人材開発支援助成金 / リスキリングスキーム</button>
+                        <button data-tab-target="#program-career-up" class="program-tab whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm">キャリアアップ助成金 / 減額回避プログラム</button>
+                        <button data-tab-target="#program-human-capital" class="program-tab whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm">人的資本経営 コンサルティング</button>
+                        <button data-tab-target="#program-keiei-kakushin" class="program-tab whitespace-nowrap py-4 px-4 border-b-2 font-medium text-sm">経営革新計画 策定支援</button>
+                    </nav>
+                </div>
+                <div class="mt-6">
+                    <div id="program-point-back" class="program-tab-panel active space-y-6">
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg"><h3 class="font-bold text-blue-800">お客様への伝え方ポイント</h3><ul class="list-disc list-inside mt-2 text-blue-700 text-sm space-y-1"><li>国の助成金を活用するので、<strong>実質12万円の負担</strong>で、従業員に<strong>60万円分</strong>のDX・GX研修を提供できます。</li><li>さらに、実質負担額を上回る<strong>24万円分のポイント</strong>が付与されるので、<strong>差し引き12万円のプラス</strong>になります。</li><li>このポイントを使って、広告やコンサルなど、<strong>事業成長に必要なサービスを実質無料で導入</strong>できます。</li></ul></div>
+                        <div><h3 class="text-xl font-bold mb-2">プログラム概要</h3><p>人材開発支援助成金を活用し、従業員のリスキリングと経営投資を同時に実現する当社独自のプログラムです。助成金で研修費用を賄い、さらに事業投資に使えるポイントを受け取ることができます。</p></div>
+                        <div><h3 class="text-xl font-bold mb-3">仕組みの図解</h3><div class="w-full overflow-x-auto bg-gray-50 p-4 rounded-lg"><svg viewBox="0 0 800 250" class="w-full min-w-[700px]"><defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#6b7280"/></marker></defs><g transform="translate(100, 75)"><rect x="-70" y="-30" width="140" height="60" rx="10" fill="#fff" stroke="#e5e7eb" stroke-width="2"/><text x="0" y="5" text-anchor="middle" font-weight="bold">お客様</text></g><g transform="translate(400, 75)"><rect x="-90" y="-30" width="180" height="60" rx="10" fill="#dbeafe" stroke="#93c5fd" stroke-width="2"/><text x="0" y="5" text-anchor="middle" font-weight="bold">当社 (NMC)</text></g><g transform="translate(700, 75)"><rect x="-70" y="-30" width="140" height="60" rx="10" fill="#e0f2fe" stroke="#bae6fd" stroke-width="2"/><text x="0" y="5" text-anchor="middle" font-weight="bold">国</text></g><g transform="translate(400, 175)"><rect x="-90" y="-30" width="180" height="60" rx="10" fill="#d1fae5" stroke="#a7f3d0" stroke-width="2"/><text x="0" y="5" text-anchor="middle" font-weight="bold">提携パートナー</text></g><path d="M 175 75 L 305 75" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/><text x="240" y="65" text-anchor="middle" font-size="12">1. 研修費用60万円支払</text><path d="M 310 45 L 170 45" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/><text x="240" y="35" text-anchor="middle" font-size="12">2. 研修提供</text><path d="M 495 75 L 625 75" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/><text x="560" y="65" text-anchor="middle" font-size="12">3. 助成金申請</text><path d="M 630 105 L 490 105" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/><text x="560" y="115" text-anchor="middle" font-size="12">4. 助成金48万円受給</text><path d="M 310 105 L 170 105" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/><text x="240" y="115" text-anchor="middle" font-size="12">5. 24万ポイント付与</text><path d="M 100 110 L 100 175 L 305 175" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/><text x="200" y="140" text-anchor="middle" font-size="12">6. サービス利用依頼</text><path d="M 495 175 L 500 175" fill="none" stroke="#6b7280" stroke-width="2"/><path d="M 310 175 L 305 175" fill="none" stroke="#6b7280" stroke-width="2" marker-end="url(#arrow)"/><text x="350" y="165" text-anchor="middle" font-size="12">7. サービス提供</text></svg></div></div><div class="text-center"><button class="main-nav-link-btn mt-4 bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition" data-href="#point-partners">ポイント利用先を見る →</button></div>
+                    </div>
+                    <div id="program-career-up" class="program-tab-panel space-y-6">
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg"><h3 class="font-bold text-blue-800">お客様への伝え方ポイント</h3><ul class="list-disc list-inside mt-2 text-blue-700 text-sm space-y-1"><li>国の制度変更で、2025年度からキャリアアップ助成金が<strong>80万円から40万円に半減</strong>してしまいます。</li><li>しかし、<strong>有期雇用期間中に当社の研修を受けていただく</strong>だけで、減額される<strong>40万円分（2期目）も受給</strong>できます。</li><li>研修費用は別の助成金で大半が賄えるため、<strong>実質的な追加負担を抑えつつ</strong>、40万円の減額を防ぐことができます。</li></ul></div>
+                        <div><h3 class="text-xl font-bold mb-2">プログラム概要</h3><p>2025年度からのキャリアアップ助成金（正社員化コース）の制度変更による支給額減額を、当社の研修プログラムと組み合わせることで回避します。有期雇用期間中に指定の研修を受講することで、減額対象となる2期目の助成金（40万円）も受給可能になります。</p></div>
+                        <div><h3 class="text-xl font-bold mb-3">研修の有無による受給額の違い</h3><div class="grid grid-cols-1 lg:grid-cols-2 gap-6"><div class="border rounded-lg p-4 bg-gray-50"><h4 class="font-bold text-center text-lg mb-2">通常プラン（研修なし）</h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" class="w-full"><text x="150" y="20" text-anchor="middle" font-size="14" font-weight="bold">受給額: 40万円</text><rect x="50" y="40" width="200" height="30" fill="#fca5a5"/><text x="150" y="60" text-anchor="middle" font-size="12" fill="#7f1d1d">手数料 (20%): 8万円</text><rect x="50" y="70" width="160" height="30" fill="#86efac"/><text x="130" y="90" text-anchor="middle" font-size="12" fill="#14532d">お客様受取額: 32万円</text></svg></div><div class="border-2 border-blue-500 rounded-lg p-4 bg-blue-50 relative"><div class="absolute -top-3 -left-3 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">おすすめ</div><h4 class="font-bold text-center text-lg mb-2 text-blue-800">減額回避プログラム（研修あり）</h4><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" class="w-full"><text x="150" y="20" text-anchor="middle" font-size="14" font-weight="bold">受給額合計: 80万円</text><rect x="20" y="40" width="260" height="30" fill="#93c5fd"/><text x="150" y="60" text-anchor="middle" font-size="12" fill="#1e3a8a">1期目(40万) + 2期目加算(40万)</text><rect x="20" y="70" width="220" height="30" fill="#86efac"/><text x="130" y="90" text-anchor="middle" font-size="12" fill="#14532d">お客様受取額: 64万円</text><text x="150" y="125" text-anchor="middle" font-size="12" fill="#4b5563">手数料(16万) - 研修自己負担(12万) = 実質4万円</text></svg></div></div></div>
+                    </div>
+                    <div id="program-human-capital" class="program-tab-panel space-y-6">
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg"><h3 class="font-bold text-blue-800">お客様への伝え方ポイント</h3><ul class="list-disc list-inside mt-2 text-blue-700 text-sm space-y-1"><li>上場企業では<strong>人的資本の情報開示が義務化</strong>されており、企業の価値を測る新しいモノサシになっています。</li><li>「人」への投資は、<strong>投資家や金融機関からの評価</strong>に直結し、資金調達や企業ブランディングにも有利に働きます。</li><li>当社では、情報開示のサポートから、従業員のエンゲージメントを高める具体的な施策まで、<strong>専門家が一貫してサポート</strong>します。</li></ul></div>
+                        <div><h3 class="text-xl font-bold mb-2">プログラム概要</h3><p>人材を「資本」として捉え、その価値を最大限に引き出すことで、中長期的な企業価値向上につなげる経営のあり方（人的資本経営）をコンサルティングします。2023年3月期決算からの情報開示義務化に対応し、企業の持続的成長を支援します。</p></div>
+                    </div>
+                    <div id="program-keiei-kakushin" class="program-tab-panel space-y-6">
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg"><h3 class="font-bold text-blue-800">お客様への伝え方ポイント</h3><ul class="list-disc list-inside mt-2 text-blue-700 text-sm space-y-1"><li>新規事業や新サービスをお考えなら、<strong>都道府県知事のお墨付き</strong>がもらえる「経営革新計画」がおすすめです。</li><li>この計画が承認されると、<strong>「ものづくり補助金」などが採択されやすくなる</strong>といったメリットがあります。</li><li>通常50万円の策定支援費用が、<strong>リスキリング研修で得たポイントで実質無料</strong>になります。人材育成と事業計画を同時に進められます。</li></ul></div>
+                        <div><h3 class="text-xl font-bold mb-2">プログラム概要</h3><p>既存事業の強みを活かした新規事業や新サービス開発を後押しする「経営革新計画」の策定を支援します。都道府県知事の承認を得ることで、様々なメリットを享受できます。単体での策定支援（50万円）も可能ですが、リスキリング研修と組み合わせることで策定費用をポイント充当し、実質無料で実施できます。</p></div>
+                        <div><h3 class="text-xl font-bold mb-3">認定後の主なメリット</h3><div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center"><div class="bg-gray-50 p-4 rounded-lg"><svg class="w-10 h-10 mx-auto text-blue-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><p class="font-bold text-sm">補助金優先採択</p></div><div class="bg-gray-50 p-4 rounded-lg"><svg class="w-10 h-10 mx-auto text-blue-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg><p class="font-bold text-sm">金融支援</p></div><div class="bg-gray-50 p-4 rounded-lg"><svg class="w-10 h-10 mx-auto text-blue-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg><p class="font-bold text-sm">公的信頼性向上</p></div><div class="bg-gray-50 p-4 rounded-lg"><svg class="w-10 h-10 mx-auto text-blue-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V7.618a1 1 0 01.553-.894L9 4l6 3v8.764a1 1 0 01-.553.894L9 20z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4v16"></path></svg><p class="font-bold text-sm">事業戦略明確化</p></div></div></div>
+                    </div>
+                </div>`,
+            'grant-search': `<h2 class="text-2xl font-bold mb-4">助成金・補助金 検索</h2><p class="mb-6 text-sm text-gray-600">AIアシスタントに質問するか、下のカードから制度を選択してください。</p><div class="bg-gray-100 p-4 rounded-lg mb-8"><h3 class="font-bold text-lg mb-2 flex items-center"><svg class="w-6 h-6 mr-2 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V7.5a2.25 2.25 0 00-2.25-2.25H7.5A2.25 2.25 0 005.25 7.5v9.75a2.25 2.25 0 002.25 2.25z" /></svg>AIアシスタント (β版)</h3><div id="ai-chat-history" class="h-48 overflow-y-auto bg-white p-3 rounded-md mb-2 border"><div class="ai-chat-bubble self-start bg-gray-200 text-gray-800 p-3 rounded-lg rounded-bl-none"><p class="text-sm">こんにちは！助成金・補助金について何でも聞いてください。<br>例：「ものづくり補助金について教えて」</p></div></div><div class="flex"><input type="text" id="ai-search-input" placeholder="質問を入力..." class="flex-grow p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"><button id="ai-search-btn" class="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition">質問する</button></div></div><div id="grant-card-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>`,
+            'point-partners': `<h2 class="text-2xl font-bold mb-4">ポイント利用先一覧</h2><p class="mb-6">リスキリングスキームで獲得したポイントは、以下の提携サービスでご利用いただけます。</p><div id="partner-category-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>`,
+            'service-summary': `<h2 class="text-2xl font-bold mb-4">当社事業概要</h2><p>ここに事業概要が入ります。</p>`,
+            'schedule-generator': `<h2 class="text-2xl font-bold mb-4">スケジュールジェネレーター</h2><p>ここにスケジュールジェネレーターが入ります。</p>`,
+            'how-to-add': `<h2 class="text-2xl font-bold mb-4">ナレッジの追加方法</h2><p>ここにナレッジ追加方法が入ります。</p>`
+        };
+
+        // --- App Initialization ---
+        document.addEventListener('DOMContentLoaded', function () {
+            const mainContent = document.getElementById('main-content');
+            const searchInput = document.getElementById('searchInput');
+            let searchTimeout;
+
+            // --- All Functions Definitions ---
+            function showSection(hash, activateTab = null) {
+                document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+                let targetSection = document.querySelector(hash);
+                if (!targetSection) {
+                    targetSection = document.getElementById('home');
+                }
+                targetSection.classList.add('active');
+
+                if (activateTab) {
+                    const tabButton = document.querySelector(`button[data-tab-target="${activateTab}"]`);
+                    if (tabButton) {
+                        document.querySelectorAll('.program-tab').forEach(t => t.classList.remove('active'));
+                        tabButton.classList.add('active');
+                        document.querySelectorAll('.program-tab-panel').forEach(p => p.classList.remove('active'));
+                        document.querySelector(activateTab)?.classList.add('active');
+                    }
+                }
+            }
+
+            function openModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (!modal) return;
+                const modalContent = modal.querySelector('.modal-content');
+                modal.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    if(modalContent) modalContent.classList.remove('scale-95');
+                }, 10);
+            }
+
+            function closeModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (!modal) return;
+                const modalContent = modal.querySelector('.modal-content');
+                modal.classList.add('opacity-0');
+                if(modalContent) modalContent.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    document.body.classList.remove('overflow-hidden');
+                }, 300);
+            }
+            
+            function initializeGrantSearch() {
+                const container = document.getElementById('grant-card-container');
+                if (!container) return;
+                container.innerHTML = '';
+                grantsData.forEach(grant => {
+                    const card = document.createElement('div');
+                    card.className = 'grant-card p-4 bg-white rounded-lg border cursor-pointer';
+                    card.dataset.grantId = grant.id;
+                    const typeLabel = grant.type === 'joseikin' ? '<span class="text-xs font-bold bg-green-100 text-green-800 px-2 py-1 rounded-full">助成金</span>' : '<span class="text-xs font-bold bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">補助金</span>';
+                    card.innerHTML = `<div class="flex justify-between items-start"><h3 class="font-bold text-lg text-gray-800 pr-2">${grant.title}</h3>${typeLabel}</div><p class="text-sm text-gray-600 mt-2">${grant.purpose}</p>`;
+                    container.appendChild(card);
+                });
+            }
+
+            function setupAiSearch() {
+                const aiInput = document.getElementById('ai-search-input');
+                const aiBtn = document.getElementById('ai-search-btn');
+                const aiHistory = document.getElementById('ai-chat-history');
+                if(!aiInput || !aiBtn || !aiHistory) return;
+
+                const handleSearch = () => {
+                    const query = aiInput.value.trim();
+                    if (!query) return;
+                    const userBubble = document.createElement('div');
+                    userBubble.className = 'ai-chat-bubble self-end bg-blue-500 text-white p-3 rounded-lg rounded-br-none mt-2';
+                    userBubble.innerHTML = `<p class="text-sm">${escapeHTML(query)}</p>`;
+                    aiHistory.appendChild(userBubble);
+                    aiInput.value = '';
+                    aiHistory.scrollTop = aiHistory.scrollHeight;
+                    setTimeout(() => {
+                        let response = '申し訳ありません、その情報は見つかりませんでした。';
+                        const lowerQuery = query.toLowerCase();
+                        const foundGrant = grantsData.find(g => g.title.toLowerCase().includes(lowerQuery) || g.keywords.toLowerCase().includes(lowerQuery));
+                        if (foundGrant) {
+                            response = `<strong>${foundGrant.title}</strong>ですね。<br><strong>目的:</strong> ${foundGrant.purpose}<br><strong>対象:</strong> ${foundGrant.target}`;
+                        }
+                        const aiBubble = document.createElement('div');
+                        aiBubble.className = 'ai-chat-bubble self-start bg-gray-200 text-gray-800 p-3 rounded-lg rounded-bl-none mt-2';
+                        aiBubble.innerHTML = `<p class="text-sm">${response}</p>`;
+                        aiHistory.appendChild(aiBubble);
+                        aiHistory.scrollTop = aiHistory.scrollHeight;
+                    }, 500);
+                };
+                aiBtn.addEventListener('click', handleSearch);
+                aiInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSearch(); });
+            }
+
+            function openJinzaiKaihatsuSimulatorModal() {
+                const modalBody = document.getElementById('simulator-modal-body');
+                modalBody.innerHTML = `<h2 class="text-2xl font-bold mb-2">人材開発支援助成金 シミュレーター</h2><p class="mb-6 text-sm text-gray-600">当社のリスキリング研修とポイント制度を活用した場合のメリットを計算します。</p><div class="space-y-4" id="simulator-content-jinzai"></div>`;
+                openModal('simulator-modal');
+                setupJinzaiKaihatsuSimulator();
+            }
+
+            function openGyomukaizenSimulatorModal() {
+                const modalBody = document.getElementById('simulator-modal-body');
+                modalBody.innerHTML = `<h2 class="text-2xl font-bold mb-2">業務改善助成金 シミュレーター</h2><p class="mb-6 text-sm text-gray-600">お客様の状況をヒアリングしながら入力することで、対象になるか、いくら受給できるかの目安が分かります。</p><div class="space-y-4" id="simulator-content"></div>`;
+                openModal('simulator-modal');
+                setupGyomukaizenSimulator();
+            }
+
+            function openCareerUpSimulatorModal() {
+                const modalBody = document.getElementById('simulator-modal-body');
+                modalBody.innerHTML = `<h2 class="text-2xl font-bold mb-2">キャリアアップ助成金 シミュレーター</h2><p class="mb-6 text-sm text-gray-600">2025年度の制度変更に対応し、研修実施によるメリットをシミュレーションします。</p><div class="space-y-4" id="simulator-content-careerup"></div>`;
+                openModal('simulator-modal');
+                setupCareerUpSimulator();
+            }
+
+            function setupJinzaiKaihatsuSimulator() {
+                const container = document.getElementById('simulator-content-jinzai');
+                if (!container) return;
+
+                container.innerHTML = `
+                    <div class="sim-step bg-gray-50 p-4 rounded-lg border">
+                        <label for="sim-jinzai-employees" class="block text-sm font-medium text-gray-700 mb-1">1. 研修を受講する従業員数</label>
+                        <input type="number" id="sim-jinzai-employees" placeholder="例: 5" class="w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+                    <div class="sim-step bg-gray-50 p-4 rounded-lg border">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">2. 企業規模を選択してください</label>
+                        <select id="sim-jinzai-company-size" class="w-full p-2 border border-gray-300 rounded-md">
+                            <option value="sme">中小企業</option>
+                            <option value="large">大企業</option>
+                        </select>
+                    </div>
+                    <div id="sim-jinzai-result" class="mt-6"></div>
+                `;
+
+                const inputs = {
+                    employees: document.getElementById('sim-jinzai-employees'),
+                    size: document.getElementById('sim-jinzai-company-size'),
+                };
+                const resultDiv = document.getElementById('sim-jinzai-result');
+
+                function runJinzaiSimulation() {
+                    const numEmployees = parseInt(inputs.employees.value, 10) || 0;
+                    const isSME = inputs.size.value === 'sme';
+
+                    if (numEmployees <= 0) {
+                        resultDiv.innerHTML = '';
+                        return;
+                    }
+
+                    const trainingFeePerPerson = 600000;
+                    const grantAmountPerPerson = isSME ? 480000 : 396000;
+                    const selfPayPerPerson = trainingFeePerPerson - grantAmountPerPerson;
+                    const pointsPerPerson = 240000;
+
+                    const totalTrainingFee = trainingFeePerPerson * numEmployees;
+                    const totalGrant = grantAmountPerPerson * numEmployees;
+                    const totalSelfPay = selfPayPerPerson * numEmployees;
+                    const totalPoints = pointsPerPerson * numEmployees;
+                    const finalMerit = totalPoints - totalSelfPay;
+
+                    resultDiv.innerHTML = `
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg mt-6">
+                            <h3 class="text-xl font-bold text-blue-800">シミュレーション結果 (${numEmployees}名 / ${isSME ? '中小企業' : '大企業'})</h3>
+                            <div class="overflow-x-auto mt-4">
+                                <table class="w-full text-left border-collapse">
+                                    <thead><tr class="bg-white"><th class="p-3 border">項目</th><th class="p-3 border">単価</th><th class="p-3 border">合計金額</th></tr></thead>
+                                    <tbody>
+                                        <tr><td class="p-3 border">研修費用</td><td class="p-3 border">${trainingFeePerPerson.toLocaleString()}円</td><td class="p-3 border">${totalTrainingFee.toLocaleString()}円</td></tr>
+                                        <tr class="bg-gray-50"><td class="p-3 border font-medium">助成金額</td><td class="p-3 border text-green-600">${grantAmountPerPerson.toLocaleString()}円</td><td class="p-3 border text-green-600 font-bold">-${totalGrant.toLocaleString()}円</td></tr>
+                                        <tr><td class="p-3 border">企業の実質負担額</td><td class="p-3 border">${selfPayPerPerson.toLocaleString()}円</td><td class="p-3 border font-bold">${totalSelfPay.toLocaleString()}円</td></tr>
+                                        <tr class="bg-gray-50"><td class="p-3 border font-medium">付与ポイント</td><td class="p-3 border text-blue-600">${pointsPerPerson.toLocaleString()}円分</td><td class="p-3 border text-blue-600 font-bold">+${totalPoints.toLocaleString()}円分</td></tr>
+                                        <tr class="bg-yellow-100"><td class="p-3 border font-bold">最終的な企業のメリット</td><td class="p-3 border"></td><td class="p-3 border text-red-600 font-bold text-lg">${finalMerit.toLocaleString()}円相当</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                }
+                inputs.employees.addEventListener('input', runJinzaiSimulation);
+                inputs.size.addEventListener('change', runJinzaiSimulation);
+            }
+
+            function setupGyomukaizenSimulator() { /* ... existing code ... */ }
+            function setupCareerUpSimulator() { /* ... existing code ... */ }
+
+            function renderAllSections() {
+                mainContent.innerHTML = '';
+                Object.keys(originalSectionsHTML).forEach(id => {
+                    const section = document.createElement('section');
+                    section.id = id;
+                    section.className = 'content-section bg-white p-8 rounded-xl shadow-md';
+                    section.innerHTML = originalSectionsHTML[id];
+                    mainContent.appendChild(section);
+                });
+                attachAllEventListeners();
+            }
+
+            function attachAllEventListeners() {
+                document.body.addEventListener('click', function(e) {
+                    const link = e.target.closest('a, button');
+                    if (!link) return;
+
+                    // Main Nav & Sub Nav
+                    if (link.classList.contains('main-nav-link') || link.classList.contains('sub-nav-link')) {
+                        e.preventDefault();
+                        if (searchInput.value.trim() !== '') {
+                            searchInput.value = '';
+                            renderAllSections();
+                        }
+                        const isSubNav = link.classList.contains('sub-nav-link');
+                        const targetId = link.getAttribute('href');
+                        const mainSectionId = isSubNav ? '#service-menu' : targetId;
+                        const tabId = isSubNav ? targetId : null;
+                        history.pushState({ section: mainSectionId, tab: tabId }, "", targetId);
+                        showSection(mainSectionId, tabId);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        return;
+                    }
+                    // Program Tabs
+                    if (link.classList.contains('program-tab')) {
+                        const targetId = link.dataset.tabTarget;
+                        const targetPanel = document.querySelector(targetId);
+                        document.querySelectorAll('.program-tab').forEach(t => t.classList.remove('active'));
+                        link.classList.add('active');
+                        document.querySelectorAll('.program-tab-panel').forEach(panel => panel.classList.remove('active'));
+                        if (targetPanel) targetPanel.classList.add('active');
+                        return;
+                    }
+                    // Grant Cards
+                    if (link.classList.contains('grant-card')) {
+                        const grantId = link.dataset.grantId;
+                        if (grantId === 'jinzai-kaihatsu') openJinzaiKaihatsuSimulatorModal();
+                        else if (grantId === 'gyomukaizen-joseikin') openGyomukaizenSimulatorModal();
+                        else if (grantId === 'career-up') openCareerUpSimulatorModal();
+                        else alert(`「${grantsData.find(g => g.id === grantId).title}」の詳細表示機能は現在準備中です。`);
+                        return;
+                    }
+                    // Modals
+                    if (link.closest('.modal-close-btn, #simulator-close-btn')) {
+                        const modal = link.closest('.modal-overlay');
+                        if (modal) closeModal(modal.id);
+                        return;
+                    }
+                    // Button inside Service Menu
+                    if (link.classList.contains('main-nav-link-btn')) {
+                        const targetId = link.dataset.href;
+                        history.pushState({ section: targetId, tab: null }, "", targetId);
+                        showSection(targetId);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        return;
+                    }
+                });
+
+                document.querySelectorAll('.modal-overlay').forEach(modal => {
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            closeModal(modal.id);
+                        }
+                    });
+                });
+
+                document.getElementById('toc-toggle')?.addEventListener('click', (e) => {
+                    const tocNav = document.getElementById('toc');
+                    tocNav.classList.toggle('hidden');
+                    e.target.textContent = tocNav.classList.contains('hidden') ? '[表示]' : '[非表示]';
+                });
+                
+                initializeGrantSearch();
+                setupAiSearch();
+            }
+
+            function escapeHTML(str) { const p = document.createElement("p"); p.appendChild(document.createTextNode(str)); return p.innerHTML; }
+
+            // --- Initial Load ---
+            renderAllSections();
+            const initialHash = window.location.hash;
+            if (initialHash.startsWith('#program-')) {
+                showSection('#service-menu', initialHash);
+            } else {
+                showSection(initialHash || '#home');
+            }
+            
+            // --- Global Search ---
+            searchInput.addEventListener('input', function () {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    const query = this.value.trim();
+                    renderAllSections(); 
+                    
+                    if (query === '') {
+                        const currentHash = window.location.hash;
+                         if (currentHash.startsWith('#program-')) {
+                            showSection('#service-menu', currentHash);
+                        } else {
+                            showSection(currentHash || '#home');
+                        }
+                        return;
+                    }
+                    
+                    document.querySelectorAll('.content-section').forEach(section => section.classList.add('active'));
+                    
+                    const regex = new RegExp(query, 'gi');
+                    let matchFound = false;
+                    document.querySelectorAll('#main-content .content-section').forEach(element => {
+                        const textNodes = (function getTextNodes(node) { let textNodes = []; if (node.nodeType === 3) { if (node.nodeValue.trim() !== '') textNodes.push(node); } else { for (let i = 0, len = node.childNodes.length; i < len; ++i) { textNodes = textNodes.concat(getTextNodes(node.childNodes[i])); } } return textNodes; })(element);
+                        
+                        let sectionHasMatch = false;
+                        textNodes.forEach(node => {
+                            if (node.nodeValue.match(regex)) {
+                                matchFound = true;
+                                sectionHasMatch = true;
+                                const newNode = document.createElement('span');
+                                newNode.innerHTML = node.nodeValue.replace(regex, `<span class="search-highlight">$&</span>`);
+                                node.parentNode.replaceChild(newNode, node);
+                            }
+                        });
+                        if (!sectionHasMatch) {
+                            element.classList.remove('active');
+                        }
+                    });
+                    if (!matchFound) {
+                        mainContent.innerHTML = `<div class="bg-white p-8 rounded-xl shadow-md"><p class="text-center text-gray-600">「${escapeHTML(query)}」に一致する情報は見つかりませんでした。</p></div>`;
+                    }
+                }, 300);
+            });
+
+            // --- Popstate for browser navigation ---
+            window.addEventListener('popstate', (e) => {
+                renderAllSections();
+                const state = e.state || { section: '#home', tab: null };
+                showSection(state.section, state.tab);
+            });
         });
-
-        // --- 4. Execution Logic ---
-        attachAllEventListeners();
-
-        window.addEventListener('popstate', (e) => {
-            const state = e.state || { section: '#home', tab: null };
-            showSection(state.section, state.tab);
-        });
-
-        searchInput.addEventListener('input', function () {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(() => performSearch(this.value.trim()), 300);
-        });
-
-        const initialHash = window.location.hash;
-        if (initialHash.startsWith('#program-')) {
-            showSection('#service-menu', initialHash);
-        } else {
-            showSection(initialHash || '#home');
-        }
-    });
     </script>
 </body>
 </html>
